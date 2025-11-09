@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpcfs7k3mwbqs"]
+
+[ext_resource type="Script" uid="uid://dle8umoowxbse" path="res://scripts/scene_scripts/room.gd" id="1_36trf"]
+
+[node name="Room" type="Node"]
+script = ExtResource("1_36trf")
+metadata/_custom_type_script = "uid://dle8umoowxbse"
+
+[node name="RoomNumber" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

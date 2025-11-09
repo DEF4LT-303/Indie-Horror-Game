@@ -1,0 +1,34 @@
+[
+	{
+		"level_title" : "House",
+		"Starting_Room" : "0",
+		"Rooms": [
+			{
+				"Room_ID"	 : 0,
+				"Room_Node"  : "bedroom.tscn",
+				"Doors"		 : [
+					{
+						"Name" : "Door_E",
+						"Destination_Level_Tag" : "1",
+						"Destination_Door_Tag" : "S",
+						"Spawn_Direction": "right",
+						"Teleport" : false
+					}
+				]
+			},
+			{
+				"Room_ID"	 : 1,
+				"Room_Node"  : "bathroom.tscn",
+				"Doors"		 : [
+					{
+						"Name" : "Door_S",
+						"Destination_Level_Tag" : "0",
+						"Destination_Door_Tag" : "E",
+						"Spawn_Direction": "up",
+						"Teleport" : false
+					}
+				]
+			}
+		]
+	}
+]
