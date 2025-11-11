@@ -16,8 +16,8 @@ var room_array : Array
 func go_to_level(destination_level_tag, destination_door_tag) -> void:
 	current_room = int(destination_level_tag)
 	destination_door = "Door_" + destination_door_tag
-	#TransitionScene.transition()
-	#await TransitionScene.on_transition_finished
+	TransitionScene.transition()
+	await TransitionScene.on_transition_finished
 	spawn_door_tag = destination_door_tag
 	#print("spawn_door_tag: " + spawn_door_tag)
 	var roomData = level_dictionary[0].Rooms[int(destination_level_tag)]
