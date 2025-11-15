@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://du5mbmvgkawi5" path="res://art/characters/lily_cropped.png" id="2_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qm0ti"]
-radius = 6.422018
+radius = 4.830917
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqap4"]
 atlas = ExtResource("2_qhqgy")
@@ -114,11 +114,13 @@ z_index = 1
 y_sort_enabled = true
 slide_on_ceiling = false
 script = ExtResource("1_g2els")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
 y_sort_enabled = true
-position = Vector2(1, -2)
-scale = Vector2(1.09, 1)
+position = Vector2(-2.842171e-14, 0)
+scale = Vector2(0.965, 0.855)
 shape = SubResource("CircleShape2D_qm0ti")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -127,7 +129,10 @@ position = Vector2(0, -11)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_0eou4")
 animation = &"front_idle"
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.1972222
 zoom = Vector2(3.72, 3.72)
 limit_enabled = false
+metadata/_edit_lock_ = true

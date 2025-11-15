@@ -639,6 +639,8 @@ texture = ExtResource("1_0grwd")
 35:29/0 = 0
 18:12/size_in_atlas = Vector2i(4, 4)
 18:12/0 = 0
+18:12/0/y_sort_origin = -13
+18:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.565216, -13.219616, 31.745056, -13.219616, 31.924927, 31.745066, -31.745056, 31.745066)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tjgix"]
 texture = ExtResource("2_mkmp1")
@@ -990,6 +992,7 @@ texture = ExtResource("2_mkmp1")
 30:22/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_xunnl"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_pwtdf")
 sources/1 = SubResource("TileSetAtlasSource_tjgix")
 
@@ -2414,7 +2417,6 @@ texture = ExtResource("1_0grwd")
 18:2/0 = 0
 20:2/0 = 0
 21:2/0 = 0
-22:2/0 = 0
 24:2/0 = 0
 25:2/0 = 0
 26:2/0 = 0
@@ -2446,7 +2448,6 @@ texture = ExtResource("1_0grwd")
 18:3/0 = 0
 20:3/0 = 0
 21:3/0 = 0
-22:3/0 = 0
 24:3/0 = 0
 25:3/0 = 0
 26:3/0 = 0
@@ -2624,8 +2625,6 @@ texture = ExtResource("1_0grwd")
 31:11/0 = 0
 32:11/0 = 0
 34:11/0 = 0
-8:12/0 = 0
-9:12/0 = 0
 10:12/0 = 0
 11:12/0 = 0
 12:12/0 = 0
@@ -2648,8 +2647,6 @@ texture = ExtResource("1_0grwd")
 4:13/0 = 0
 5:13/0 = 0
 6:13/0 = 0
-8:13/0 = 0
-9:13/0 = 0
 10:13/0 = 0
 11:13/0 = 0
 12:13/0 = 0
@@ -2675,8 +2672,6 @@ texture = ExtResource("1_0grwd")
 4:14/0 = 0
 5:14/0 = 0
 6:14/0 = 0
-8:14/0 = 0
-9:14/0 = 0
 10:14/0 = 0
 11:14/0 = 0
 12:14/0 = 0
@@ -2700,8 +2695,6 @@ texture = ExtResource("1_0grwd")
 4:15/0 = 0
 5:15/0 = 0
 6:15/0 = 0
-8:15/0 = 0
-9:15/0 = 0
 10:15/0 = 0
 11:15/0 = 0
 12:15/0 = 0
@@ -2782,7 +2775,6 @@ texture = ExtResource("1_0grwd")
 1:19/0 = 0
 2:19/0 = 0
 3:19/0 = 0
-7:19/0 = 0
 8:19/0 = 0
 9:19/0 = 0
 13:19/0 = 0
@@ -2810,8 +2802,6 @@ texture = ExtResource("1_0grwd")
 3:20/0 = 0
 4:20/0 = 0
 5:20/0 = 0
-6:20/0 = 0
-7:20/0 = 0
 8:20/0 = 0
 9:20/0 = 0
 10:20/0 = 0
@@ -2835,8 +2825,6 @@ texture = ExtResource("1_0grwd")
 3:21/0 = 0
 4:21/0 = 0
 5:21/0 = 0
-6:21/0 = 0
-7:21/0 = 0
 8:21/0 = 0
 9:21/0 = 0
 10:21/0 = 0
@@ -2870,9 +2858,6 @@ texture = ExtResource("1_0grwd")
 7:23/0 = 0
 8:23/0 = 0
 10:23/0 = 0
-12:23/0 = 0
-13:23/0 = 0
-14:23/0 = 0
 20:23/0 = 0
 21:23/0 = 0
 24:23/0 = 0
@@ -2888,9 +2873,6 @@ texture = ExtResource("1_0grwd")
 7:24/0 = 0
 8:24/0 = 0
 10:24/0 = 0
-12:24/0 = 0
-13:24/0 = 0
-14:24/0 = 0
 16:24/0 = 0
 17:24/0 = 0
 18:24/0 = 0
@@ -2912,9 +2894,6 @@ texture = ExtResource("1_0grwd")
 7:25/0 = 0
 8:25/0 = 0
 10:25/0 = 0
-12:25/0 = 0
-13:25/0 = 0
-14:25/0 = 0
 16:25/0 = 0
 17:25/0 = 0
 18:25/0 = 0
@@ -3002,8 +2981,30 @@ texture = ExtResource("1_0grwd")
 35:29/0 = 0
 18:12/size_in_atlas = Vector2i(4, 4)
 18:12/0 = 0
+18:12/0/texture_origin = Vector2i(4, 0)
+18:12/0/y_sort_origin = -13
+18:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-35.342247, 25.270151, 27.248596, 25.809729, 27.428452, -12.859899, -35.342247, -12.859899)
+12:23/size_in_atlas = Vector2i(3, 3)
+12:23/0 = 0
+12:23/0/y_sort_origin = -13
+12:23/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.291702, -8.183573, 23.291702, -8.36343, 23.291702, 11.42103, -23.471573, 11.600889)
+6:19/size_in_atlas = Vector2i(2, 3)
+6:19/0 = 0
+6:19/0/y_sort_origin = -6
+6:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(5.6346664, 15.888748, 5.736191, -5.9392443, -10.101791, -5.837719, -9.492638, 15.685696)
+8:12/size_in_atlas = Vector2i(2, 4)
+8:12/0 = 0
+8:12/0/texture_origin = Vector2i(8, 0)
+8:12/0/y_sort_origin = -22
+8:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20.683754, 25.180222, 5.036045, 25.180222, 4.9239883, -21.878756, -20.863503, -21.878756)
+22:2/size_in_atlas = Vector2i(1, 2)
+22:2/0 = 0
+22:2/0/texture_origin = Vector2i(3, 0)
+22:2/0/y_sort_origin = -13
+22:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.2133102, 15.888748, 4.111786, -12.233828, -9.797218, -12.233828, -10.101791, 15.584171)
 
 [sub_resource type="TileSet" id="TileSet_mk2nf"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_4wfg3")
 
 [sub_resource type="Gradient" id="Gradient_w7kh3"]
@@ -3016,6 +3017,7 @@ fill_from = Vector2(0.5726496, 0.98717946)
 fill_to = Vector2(0.517094, 0)
 
 [node name="LevelBedroom" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_7lolw")
 
 [node name="Floor" type="TileMapLayer" parent="."]
@@ -3037,9 +3039,9 @@ tile_map_data = PackedByteArray("AAAKAAUAAAAZAA8AAAAKAAYAAAAZABAAAAAKAAcAAAAZABE
 tile_set = SubResource("TileSet_pwtdf")
 
 [node name="Furniture" type="TileMapLayer" parent="."]
-z_index = 2
+z_index = 1
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAARAAIAAAAMABcAAAARAAMAAAAMABgAAAARAAQAAAAMABkAAAASAAIAAAANABcAAAASAAMAAAANABgAAAASAAQAAAANABkAAAATAAIAAAAOABcAAAATAAMAAAAOABgAAAATAAQAAAAOABkAAAALAAMAAAAIAAwAAAALAAQAAAAIAA0AAAALAAUAAAAIAA4AAAALAAYAAAAIAA8AAAAMAAMAAAAJAAwAAAAMAAQAAAAJAA0AAAAMAAUAAAAJAA4AAAAMAAYAAAAJAA8AAAANAAQAAAACABAAAAANAAUAAAACABEAAAAOAAQAAAADABAAAAAOAAUAAAADABEAAAAUAAgAAAAWAAIAAAAUAAkAAAAWAAMAAAASAAYAAAASAAwAABA=")
+tile_map_data = PackedByteArray("AAASAAYAAAASAAwAABASAAMAAAAMABcAAAAMAAUAAAAIAAwAAAAUAAgAAAAWAAIAAAANAAUAAAAGABMAAAA=")
 tile_set = SubResource("TileSet_mk2nf")
 
 [node name="Doors" type="Node2D" parent="."]
@@ -3059,5 +3061,11 @@ position = Vector2(161.07726, 112.332085)
 rotation = 1.5707964
 scale = Vector2(1.5785959, 0.53630906)
 texture = SubResource("GradientTexture2D_7lolw")
+
+[node name="BoundaryCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoundaryCollision"]
+position = Vector2(178.38623, -28.066582)
+polygon = PackedVector2Array(-32.38623, 156.06659, -32.38623, 186.06659, 16.61377, 186.06659, 16.61377, 205.06659, 42.61377, 205.06659, 42.61377, 186.06659, 155.61377, 186.06659, 155.61377, 156.06659, 154.61377, 106.06658, 154.61377, 60.06658, 26.61377, 61.06658, 26.61377, 30.066582, -0.38623047, 30.066582, 0.61376953, 156.06659, -32.38623, 156.06659, -31.38623, -22.933418, 176.61377, -30.933418, 176.61377, 215.06659, -58.38623, 215.06659, -51.38623, 152.06659)
 
 [editable path="Doors/Door_E"]

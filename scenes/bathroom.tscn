@@ -2546,7 +2546,6 @@ texture = SubResource("GradientTexture2D_qfnet")
 metadata/_edit_lock_ = true
 
 [node name="collision" type="StaticBody2D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision"]
 polygon = PackedVector2Array(-80, -144, 80, -144, 80, 80, 16, 80, 16, 98, -16, 98, -16, 80, -80, 80, -80, -142, -106, -103, -111, 123, 117, 125, 119, -188, -81, -179)
