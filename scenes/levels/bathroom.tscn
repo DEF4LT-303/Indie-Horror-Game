@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://d2kbkyku8ivkh"]
+[gd_scene load_steps=27 format=4 uid="uid://d2kbkyku8ivkh"]
 
 [ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/house_room.gd" id="1_hk6ca"]
 [ext_resource type="Texture2D" uid="uid://c4yoyk0cmjgfp" path="res://art/room and furnitures/messy furniture set updated v2.png" id="2_ijboq"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://lf5y5fubww1n" path="res://art/room and furnitures/window.png" id="4_lasd6"]
 [ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/point_light_2d.gd" id="5_otne7"]
 [ext_resource type="PackedScene" uid="uid://b03u5lqcdwa3t" path="res://scenes/npc/boy_npc.tscn" id="6_30bfc"]
-[ext_resource type="PackedScene" uid="uid://b25y3x2fdkaux" path="res://scenes/elements/actionable.tscn" id="7_obdgd"]
-[ext_resource type="Resource" uid="uid://bom8krkhb31rb" path="res://GUI/dialogues/boy_npc.dialogue" id="8_t26l5"]
 [ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="9_augiv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
@@ -2488,9 +2486,6 @@ gradient = SubResource("Gradient_q0btg")
 fill_from = Vector2(0.5726496, 0.98717946)
 fill_to = Vector2(0.517094, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ym42y"]
-radius = 16.666672
-
 [node name="LevelBathroom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_hk6ca")
@@ -2562,17 +2557,11 @@ position = Vector2(0, 91.75)
 scale = Vector2(0.49999997, 0.38281247)
 texture = SubResource("GradientTexture2D_e3hyu")
 
-[node name="boyNPC" parent="." instance=ExtResource("6_30bfc")]
+[node name="boyNPC" parent="." groups=["RoomNPCs"] instance=ExtResource("6_30bfc")]
 z_index = 1
 position = Vector2(53, -39)
 scale = Vector2(0.6, 0.6)
 metadata/_edit_lock_ = true
-
-[node name="Actionable" parent="boyNPC" instance=ExtResource("7_obdgd")]
-dialogue_resource = ExtResource("8_t26l5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boyNPC/Actionable"]
-shape = SubResource("CircleShape2D_ym42y")
 
 [node name="Doors" type="Node2D" parent="."]
 z_index = 2

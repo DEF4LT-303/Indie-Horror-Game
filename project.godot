@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 NavigationManager="*res://scripts/global/navigation_manager.gd"
 TransitionScene="*res://scenes/elements/transition_scene.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-Global="*res://scripts/global/global.gd"
+GlobalState="*res://scripts/global/global_state.gd"
 
 [editor_plugins]
 

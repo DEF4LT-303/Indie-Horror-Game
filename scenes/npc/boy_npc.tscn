@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b03u5lqcdwa3t"]
+[gd_scene load_steps=9 format=3 uid="uid://b03u5lqcdwa3t"]
 
 [ext_resource type="Texture2D" uid="uid://dmebkwt1sf4oa" path="res://art/characters/protagonist.png" id="1_0wvid"]
 [ext_resource type="Script" uid="uid://coej40bkqctay" path="res://scripts/npc/boy_npc.gd" id="1_67scv"]
+[ext_resource type="PackedScene" uid="uid://b25y3x2fdkaux" path="res://scenes/elements/actionable.tscn" id="3_3uwl2"]
+[ext_resource type="Resource" uid="uid://bom8krkhb31rb" path="res://GUI/dialogues/boy_npc.dialogue" id="4_6fwus"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ltlmr"]
 radius = 9.0
@@ -21,6 +23,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b051k"]
+radius = 16.666672
+
 [node name="boyNPC" type="CharacterBody2D"]
 y_sort_enabled = true
 slide_on_ceiling = false
@@ -34,3 +39,9 @@ shape = SubResource("CircleShape2D_ltlmr")
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_6f687")
 animation = &"forward"
+
+[node name="Actionable" parent="." instance=ExtResource("3_3uwl2")]
+dialogue_resource = ExtResource("4_6fwus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+shape = SubResource("CircleShape2D_b051k")
