@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b03u5lqcdwa3t"]
+[gd_scene load_steps=7 format=3 uid="uid://b03u5lqcdwa3t"]
 
 [ext_resource type="Texture2D" uid="uid://dmebkwt1sf4oa" path="res://art/characters/protagonist.png" id="1_0wvid"]
+[ext_resource type="Script" uid="uid://coej40bkqctay" path="res://scripts/npc/boy_npc.gd" id="1_67scv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ltlmr"]
 radius = 9.0
@@ -20,9 +21,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_67scv"]
+radius = 18.110771
+
 [node name="boyNPC" type="CharacterBody2D"]
 y_sort_enabled = true
 slide_on_ceiling = false
+script = ExtResource("1_67scv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -32,3 +37,8 @@ shape = SubResource("CircleShape2D_ltlmr")
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_6f687")
 animation = &"forward"
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_67scv")
