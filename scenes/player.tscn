@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://gpi31o2j2anw"]
+[gd_scene load_steps=16 format=3 uid="uid://gpi31o2j2anw"]
 
 [ext_resource type="Script" uid="uid://drr6kk551g707" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://du5mbmvgkawi5" path="res://art/characters/lily_cropped.png" id="2_qhqgy"]
@@ -109,6 +109,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 8.0
+
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -136,3 +139,12 @@ rotation = 0.1972222
 zoom = Vector2(3.72, 3.72)
 limit_enabled = false
 metadata/_edit_lock_ = true
+
+[node name="Direction" type="Marker2D" parent="."]
+
+[node name="ActionableFinder" type="Area2D" parent="Direction"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder"]
+shape = SubResource("CircleShape2D_g2els")
