@@ -21,8 +21,8 @@ func go_to_level(destination_level_tag, destination_door_tag) -> void:
 	spawn_door_tag = destination_door_tag
 	#print("spawn_door_tag: " + spawn_door_tag)
 	var roomData = level_dictionary[0].Rooms[int(destination_level_tag)]
-	print("Loading room: ", "res://Scenes/" + roomData.Room_Node)
-	var scene_to_load : PackedScene =  load("res://scenes/"+ roomData.Room_Node)
+	print("Loading room: ", "res://scenes/levels/" + roomData.Room_Node)
+	var scene_to_load : PackedScene =  load("res://scenes/levels/"+ roomData.Room_Node)
 	get_tree().change_scene_to_packed.bind(scene_to_load).call_deferred()
 
 func trigger_player_spawn(position: Vector2, direction:String):

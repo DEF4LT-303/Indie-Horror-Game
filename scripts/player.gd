@@ -5,9 +5,18 @@ class_name Player
 @export var speed = 100
 var curr_dir = "down"
 
+@onready var actionable_finder: Area2D = $Direction/ActionableFinder
+
 func _ready() -> void:
 	$AnimatedSprite2D.play("front_idle")
 	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("interact"):
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+			return
 
 func _on_spawn(position: Vector2, direction: String) -> void:
 	global_position = position
