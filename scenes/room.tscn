@@ -5,7 +5,3 @@
 [node name="Room" type="Node"]
 script = ExtResource("1_36trf")
 metadata/_custom_type_script = "uid://dle8umoowxbse"
-
-[node name="RoomNumber" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0

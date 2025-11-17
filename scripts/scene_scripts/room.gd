@@ -34,9 +34,6 @@ func load_data_from_dictionary(level_data):
 	var door_array = level_data.Doors
 	#print(door_array)
 	load_door_data(doors_node,door_array)
-	#var parent = get_parent()
-	#var room_label = parent.get_node("$RoomNumber")
-	#room_label.text = str(level_data.Room_ID)
 
 func load_door_data(doors_node,door_array) :
 	if doors_node.find_child("Door_N") :

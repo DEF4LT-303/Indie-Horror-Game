@@ -1,17 +1,17 @@
 [gd_scene load_steps=30 format=4 uid="uid://d2kbkyku8ivkh"]
 
-[ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/house_room.gd" id="1_q0btg"]
-[ext_resource type="Texture2D" uid="uid://c4yoyk0cmjgfp" path="res://art/room and furnitures/messy furniture set updated v2.png" id="2_c3o6o"]
-[ext_resource type="Texture2D" uid="uid://cppb1vef858ku" path="res://art/room and furnitures/messy_room_door_tiles.png" id="3_hq5ij"]
-[ext_resource type="Texture2D" uid="uid://lf5y5fubww1n" path="res://art/room and furnitures/window.png" id="4_c0g1v"]
-[ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/point_light_2d.gd" id="5_ym42y"]
-[ext_resource type="PackedScene" uid="uid://b03u5lqcdwa3t" path="res://scenes/boy_npc.tscn" id="6_n5w2q"]
-[ext_resource type="PackedScene" uid="uid://b25y3x2fdkaux" path="res://scenes/elements/actionable.tscn" id="7_hq5ij"]
-[ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="7_xd8h1"]
-[ext_resource type="Resource" uid="uid://bom8krkhb31rb" path="res://scripts/dialogues/boy_npc.dialogue" id="8_c0g1v"]
+[ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/house_room.gd" id="1_hk6ca"]
+[ext_resource type="Texture2D" uid="uid://c4yoyk0cmjgfp" path="res://art/room and furnitures/messy furniture set updated v2.png" id="2_ijboq"]
+[ext_resource type="Texture2D" uid="uid://cppb1vef858ku" path="res://art/room and furnitures/messy_room_door_tiles.png" id="3_8i37m"]
+[ext_resource type="Texture2D" uid="uid://lf5y5fubww1n" path="res://art/room and furnitures/window.png" id="4_lasd6"]
+[ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/point_light_2d.gd" id="5_otne7"]
+[ext_resource type="PackedScene" uid="uid://b03u5lqcdwa3t" path="res://scenes/npc/boy_npc.tscn" id="6_30bfc"]
+[ext_resource type="PackedScene" uid="uid://b25y3x2fdkaux" path="res://scenes/elements/actionable.tscn" id="7_obdgd"]
+[ext_resource type="Resource" uid="uid://bom8krkhb31rb" path="res://GUI/dialogues/boy_npc.dialogue" id="8_t26l5"]
+[ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="9_augiv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
-texture = ExtResource("2_c3o6o")
+texture = ExtResource("2_ijboq")
 8:0/0 = 0
 9:0/0 = 0
 0:1/0 = 0
@@ -390,7 +390,7 @@ texture = ExtResource("2_c3o6o")
 21:25/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7kh3"]
-texture = ExtResource("3_hq5ij")
+texture = ExtResource("3_8i37m")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -713,7 +713,7 @@ sources/0 = SubResource("TileSetAtlasSource_4wyf3")
 sources/1 = SubResource("TileSetAtlasSource_w7kh3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_71j4m"]
-texture = ExtResource("2_c3o6o")
+texture = ExtResource("2_ijboq")
 8:0/0 = 0
 9:0/0 = 0
 0:1/0 = 0
@@ -1092,7 +1092,7 @@ texture = ExtResource("2_c3o6o")
 21:25/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
-texture = ExtResource("3_hq5ij")
+texture = ExtResource("3_8i37m")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -1420,7 +1420,7 @@ sources/0 = SubResource("TileSetAtlasSource_71j4m")
 sources/1 = SubResource("TileSetAtlasSource_qfnet")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0juu"]
-texture = ExtResource("2_c3o6o")
+texture = ExtResource("2_ijboq")
 8:0/0 = 0
 9:0/0 = 0
 0:1/0 = 0
@@ -1794,12 +1794,12 @@ texture = ExtResource("2_c3o6o")
 18:17/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.748413, 15.827568, -8.093643, 11.151241, -1.438858, 15.467854, -1.798584, 21.40319, -8.093643, 23.561497, -14.208832, 21.223331)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4mrxx"]
-texture = ExtResource("4_c0g1v")
+texture = ExtResource("4_lasd6")
 1:0/size_in_atlas = Vector2i(2, 4)
 1:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7r4gi"]
-texture = ExtResource("3_hq5ij")
+texture = ExtResource("3_8i37m")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -2124,7 +2124,7 @@ sources/1 = SubResource("TileSetAtlasSource_4mrxx")
 sources/2 = SubResource("TileSetAtlasSource_7r4gi")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i7141"]
-texture = ExtResource("2_c3o6o")
+texture = ExtResource("2_ijboq")
 18:17/size_in_atlas = Vector2i(2, 3)
 18:17/0 = 0
 18:17/0/y_sort_origin = 14
@@ -2137,7 +2137,7 @@ texture = ExtResource("2_c3o6o")
 8:22/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e3hyu"]
-texture = ExtResource("3_hq5ij")
+texture = ExtResource("3_8i37m")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -2493,7 +2493,7 @@ radius = 16.666672
 
 [node name="LevelBathroom" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_q0btg")
+script = ExtResource("1_hk6ca")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.18102583, 0.18102747, 0.20666206, 1)
@@ -2523,7 +2523,7 @@ tile_set = SubResource("TileSet_4mrxx")
 position = Vector2(-64, -101)
 scale = Vector2(1.5, 1.5)
 texture = SubResource("GradientTexture2D_k0juu")
-script = ExtResource("5_ym42y")
+script = ExtResource("5_otne7")
 min_energy = 0.0
 max_energy = 1.0
 flicker_chance = 0.07
@@ -2551,6 +2551,7 @@ texture = SubResource("GradientTexture2D_qfnet")
 metadata/_edit_lock_ = true
 
 [node name="collision" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collision"]
 polygon = PackedVector2Array(-80, -144, 80, -144, 80, 80, 16, 80, 16, 98, -16, 98, -16, 80, -80, 80, -80, -142, -106, -103, -111, 123, 117, 125, 119, -188, -81, -179)
@@ -2561,14 +2562,14 @@ position = Vector2(0, 91.75)
 scale = Vector2(0.49999997, 0.38281247)
 texture = SubResource("GradientTexture2D_e3hyu")
 
-[node name="boyNPC" parent="." instance=ExtResource("6_n5w2q")]
+[node name="boyNPC" parent="." instance=ExtResource("6_30bfc")]
 z_index = 1
 position = Vector2(53, -39)
 scale = Vector2(0.6, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="Actionable" parent="boyNPC" instance=ExtResource("7_hq5ij")]
-dialogue_resource = ExtResource("8_c0g1v")
+[node name="Actionable" parent="boyNPC" instance=ExtResource("7_obdgd")]
+dialogue_resource = ExtResource("8_t26l5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boyNPC/Actionable"]
 shape = SubResource("CircleShape2D_ym42y")
@@ -2576,7 +2577,7 @@ shape = SubResource("CircleShape2D_ym42y")
 [node name="Doors" type="Node2D" parent="."]
 z_index = 2
 
-[node name="Door_S" parent="Doors" instance=ExtResource("7_xd8h1")]
+[node name="Door_S" parent="Doors" instance=ExtResource("9_augiv")]
 
 [node name="Spawn" parent="Doors/Door_S" index="0"]
 position = Vector2(0, 72)

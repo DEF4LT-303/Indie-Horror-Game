@@ -1,13 +1,13 @@
 [gd_scene load_steps=20 format=4 uid="uid://csnorfhp2j6sp"]
 
-[ext_resource type="Texture2D" uid="uid://bxyqkjhbbca3h" path="res://art/room and furnitures/midcentury_modern_furnitureset.png" id="1_0grwd"]
-[ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/house_room.gd" id="1_7lolw"]
-[ext_resource type="Texture2D" uid="uid://diiyp3vyxqa0o" path="res://art/room and furnitures/midcentury_modern_room_door_tiles.png" id="2_mkmp1"]
-[ext_resource type="Texture2D" uid="uid://cppb1vef858ku" path="res://art/room and furnitures/messy_room_door_tiles.png" id="3_7lolw"]
-[ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="5_7lolw"]
+[ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/house_room.gd" id="1_v7lbh"]
+[ext_resource type="Texture2D" uid="uid://bxyqkjhbbca3h" path="res://art/room and furnitures/midcentury_modern_furnitureset.png" id="2_wvg2w"]
+[ext_resource type="Texture2D" uid="uid://diiyp3vyxqa0o" path="res://art/room and furnitures/midcentury_modern_room_door_tiles.png" id="3_2qq7b"]
+[ext_resource type="Texture2D" uid="uid://cppb1vef858ku" path="res://art/room and furnitures/messy_room_door_tiles.png" id="4_hbd3v"]
+[ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="5_670e5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pwtdf"]
-texture = ExtResource("1_0grwd")
+texture = ExtResource("2_wvg2w")
 28:0/0 = 0
 29:0/0 = 0
 30:0/0 = 0
@@ -643,7 +643,7 @@ texture = ExtResource("1_0grwd")
 18:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.565216, -13.219616, 31.745056, -13.219616, 31.924927, 31.745066, -31.745056, 31.745066)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tjgix"]
-texture = ExtResource("2_mkmp1")
+texture = ExtResource("3_2qq7b")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -997,7 +997,7 @@ sources/0 = SubResource("TileSetAtlasSource_pwtdf")
 sources/1 = SubResource("TileSetAtlasSource_tjgix")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0w1sy"]
-texture = ExtResource("2_mkmp1")
+texture = ExtResource("3_2qq7b")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -1346,7 +1346,7 @@ texture = ExtResource("2_mkmp1")
 30:22/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdjrh"]
-texture = ExtResource("3_7lolw")
+texture = ExtResource("4_hbd3v")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -1669,7 +1669,7 @@ sources/0 = SubResource("TileSetAtlasSource_0w1sy")
 sources/1 = SubResource("TileSetAtlasSource_hdjrh")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lv7wv"]
-texture = ExtResource("2_mkmp1")
+texture = ExtResource("3_2qq7b")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -2021,7 +2021,7 @@ texture = ExtResource("2_mkmp1")
 sources/0 = SubResource("TileSetAtlasSource_lv7wv")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7lolw"]
-texture = ExtResource("2_mkmp1")
+texture = ExtResource("3_2qq7b")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -2373,7 +2373,7 @@ texture = ExtResource("2_mkmp1")
 sources/0 = SubResource("TileSetAtlasSource_7lolw")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wfg3"]
-texture = ExtResource("1_0grwd")
+texture = ExtResource("2_wvg2w")
 28:0/0 = 0
 29:0/0 = 0
 30:0/0 = 0
@@ -3018,7 +3018,7 @@ fill_to = Vector2(0.517094, 0)
 
 [node name="LevelBedroom" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_7lolw")
+script = ExtResource("1_v7lbh")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAALAAIAAQAKABAAAAALAAMAAQAKABEAAAAMAAIAAQALABAAAAAMAAMAAQALABEAAAALAAQAAQAKABAAAAALAAUAAQAKABEAAAAMAAQAAQALABAAAAAMAAUAAQALABEAAAALAAYAAQAKABAAAAALAAcAAQAKABEAAAAMAAYAAQALABAAAAAMAAcAAQALABEAAAALAAgAAQAKABAAAAALAAkAAQAKABEAAAAMAAgAAQALABAAAAAMAAkAAQALABEAAAANAAIAAQAKABAAAAANAAMAAQAKABEAAAAOAAIAAQALABAAAAAOAAMAAQALABEAAAANAAQAAQAKABAAAAANAAUAAQAKABEAAAAOAAQAAQALABAAAAAOAAUAAQALABEAAAANAAYAAQAKABAAAAANAAcAAQAKABEAAAAOAAYAAQALABAAAAAOAAcAAQALABEAAAANAAgAAQAKABAAAAANAAkAAQAKABEAAAAOAAgAAQALABAAAAAOAAkAAQALABEAAAAPAAIAAQAKABAAAAAPAAMAAQAKABEAAAAQAAIAAQALABAAAAAPAAQAAQAKABAAAAAPAAUAAQAKABEAAAAPAAYAAQAKABAAAAAPAAcAAQAKABEAAAAQAAYAAQALABAAAAAQAAcAAQALABEAAAAPAAgAAQAKABAAAAAPAAkAAQAKABEAAAAQAAgAAQALABAAAAAQAAkAAQALABEAAAARAAIAAQAKABAAAAARAAMAAQAKABEAAAASAAIAAQALABAAAAASAAMAAQALABEAAAARAAQAAQAKABAAAAARAAUAAQAKABEAAAASAAQAAQALABAAAAASAAUAAQALABEAAAARAAYAAQAKABAAAAARAAcAAQAKABEAAAASAAYAAQALABAAAAASAAcAAQALABEAAAARAAgAAQAKABAAAAARAAkAAQAKABEAAAASAAgAAQALABAAAAASAAkAAQALABEAAAATAAIAAQAKABAAAAATAAMAAQAKABEAAAAUAAIAAQALABAAAAAUAAMAAQALABEAAAATAAQAAQAKABAAAAATAAUAAQAKABEAAAAUAAQAAQALABAAAAAUAAUAAQALABEAAAATAAYAAQAKABAAAAATAAcAAQAKABEAAAAUAAYAAQALABAAAAAUAAcAAQALABEAAAATAAgAAQAKABAAAAATAAkAAQAKABEAAAAUAAgAAQALABAAAAAUAAkAAQALABEAAAAQAAMAAQALABEAAAAQAAQAAQALABAAAAAQAAUAAQALABEAAAAJAAgAAQAKABAAAAAJAAkAAQAKABEAAAAKAAgAAQALABAAAAAKAAkAAQALABEAAAA=")
@@ -3046,7 +3046,7 @@ tile_set = SubResource("TileSet_mk2nf")
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Door_E" parent="Doors" instance=ExtResource("5_7lolw")]
+[node name="Door_E" parent="Doors" instance=ExtResource("5_670e5")]
 position = Vector2(155, 147)
 
 [node name="Spawn" parent="Doors/Door_E" index="0"]
