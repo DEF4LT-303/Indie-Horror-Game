@@ -5,7 +5,7 @@ const NPC_NAME := "boy"
 
 func _ready():
 	# Remove NPC if already talked to
-	if GlobalState.npc_has_been_talked_to(NPC_NAME):
+	if GlobalState.is_npc_talked_to(NPC_NAME):
 		queue_free()
 		return
 
@@ -14,7 +14,7 @@ func _ready():
 func _on_action(dialogue_resource, dialogue_start):
 	# Show dialogue
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start)
-	GlobalState.npcs["boy"]["talked"] = true
+	#GlobalState.npcs["boy"]["talked"] = true
 	
 	# Mark NPC as pending removal (after dialogue)
 	GlobalState.mark_npc_pending_removal(NPC_NAME)

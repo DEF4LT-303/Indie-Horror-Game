@@ -1,7 +1,18 @@
 ~ start
 
-Boy: Hey...
-Boy: Fetch me the knife
-Boy: It's on the bedroom sidetable...
+set GlobalState.dialogue_active = true
 
+if GlobalState.is_npc_talked_to("boy") == false:
+	Boy: Hey.
+	Boy: Fetch me the knife.
+	Boy: It's on the bedroom sidetable...
+	
+	set GlobalState.items["knife"]["visible"] = true
+	set GlobalState.npc_has_been_talked_to("boy")
+
+else:
+	%3 Boy: Go on. Hurry up!
+	%2 Boy: Don't keep me waiting.
+
+set GlobalState.dialogue_active = false
 => END
