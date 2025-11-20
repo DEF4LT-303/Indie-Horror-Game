@@ -1,0 +1,6 @@
+~ knife
+set GlobalState.dialogue_active = true
+You picked up a knife!
+set GlobalState.items["knife"]["collected"] = true
+set GlobalState.dialogue_active = false
+=> END

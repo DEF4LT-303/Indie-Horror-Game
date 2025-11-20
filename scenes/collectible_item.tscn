@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8ift1lkw0enp"]
+
+[ext_resource type="Script" uid="uid://do7peuvx6mw42" path="res://scripts/elements/collectible_item.gd" id="1_2t1da"]
+[ext_resource type="Texture2D" uid="uid://c8jinri8b0x3y" path="res://art/particles/sparkle.png" id="1_8hqcm"]
+[ext_resource type="Script" uid="uid://dxqpy80tl5acn" path="res://scripts/dialogues/actionable.gd" id="2_vdfb2"]
+[ext_resource type="Resource" uid="uid://cyurc6wgi4rt0" path="res://scripts/dialogues/item.dialogue" id="4_1pelc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdfb2"]
+atlas = ExtResource("1_8hqcm")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t1da"]
+atlas = ExtResource("1_8hqcm")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pelc"]
+atlas = ExtResource("1_8hqcm")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rek4e"]
+atlas = ExtResource("1_8hqcm")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hq2xc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdfb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t1da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pelc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rek4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pelc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t1da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdfb2")
+}],
+"loop": true,
+"name": &"collectible_item",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8hqcm"]
+radius = 14.0
+
+[node name="CollectibleItem" type="Node2D"]
+script = ExtResource("1_2t1da")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hq2xc")
+animation = &"collectible_item"
+frame_progress = 0.8582543
+
+[node name="Actionable" type="Area2D" parent="."]
+collision_layer = 16
+script = ExtResource("2_vdfb2")
+dialogue_resource = ExtResource("4_1pelc")
+dialogue_start = "knife"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+shape = SubResource("CircleShape2D_8hqcm")
