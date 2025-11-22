@@ -13,7 +13,7 @@ func _ready():
 
 func _on_action(dialogue_resource, dialogue_start):
 	# Show dialogue
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start)
+	DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
 	#GlobalState.npcs["boy"]["talked"] = true
 	
 	# Mark NPC as pending removal (after dialogue)

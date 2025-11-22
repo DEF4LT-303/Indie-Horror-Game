@@ -1,7 +1,5 @@
 extends Node
 
-
-
 signal on_trigger_player_spawn
 
 var current_room : int = 0
@@ -16,14 +14,28 @@ var room_array : Array
 func go_to_level(destination_level_tag, destination_door_tag) -> void:
 	current_room = int(destination_level_tag)
 	destination_door = "Door_" + destination_door_tag
+	
+	# Start fade
 	TransitionScene.transition()
 	await TransitionScene.on_transition_finished
+	
 	spawn_door_tag = destination_door_tag
-	#print("spawn_door_tag: " + spawn_door_tag)
+	
 	var roomData = level_dictionary[0].Rooms[int(destination_level_tag)]
-	print("Loading room: ", "res://scenes/levels/" + roomData.Room_Node)
-	var scene_to_load : PackedScene =  load("res://scenes/levels/"+ roomData.Room_Node)
-	get_tree().change_scene_to_packed.bind(scene_to_load).call_deferred()
+	var path = "res://scenes/levels/" + roomData.Room_Node
+	print("Loading room: ", path)
+	
+	var scene_to_load: PackedScene = load(path)
+	if scene_to_load:
+		# Call deferred to avoid issues inside await
+		call_deferred("_change_scene", scene_to_load)
+	else:
+		push_error("Failed to load scene: " + path)
+
+
+func _change_scene(scene: PackedScene) -> void:
+	get_tree().change_scene_to_packed(scene)
+
 
 func trigger_player_spawn(position: Vector2, direction:String):
 	on_trigger_player_spawn.emit(position, direction)
