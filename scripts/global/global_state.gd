@@ -1,6 +1,6 @@
 extends Node
 
-var dialogue_active = false
+var player_can_move = true
 
 var current_day := 1
 var time_of_day := 0.0

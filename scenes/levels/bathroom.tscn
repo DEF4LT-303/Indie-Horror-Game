@@ -2553,8 +2553,8 @@ polygon = PackedVector2Array(-80, -144, 80, -144, 80, 80, 16, 80, 16, 98, -16, 9
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 91.75)
-scale = Vector2(0.49999997, 0.38281247)
+position = Vector2(0, 88.25)
+scale = Vector2(0.49999997, 0.27343744)
 texture = SubResource("GradientTexture2D_e3hyu")
 
 [node name="boyNPC" parent="." groups=["RoomNPCs"] instance=ExtResource("6_30bfc")]

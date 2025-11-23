@@ -1,6 +1,6 @@
 ~ start
 
-set GlobalState.dialogue_active = true
+set GlobalState.player_can_move = false
 
 if GlobalState.is_npc_talked_to("boy") == false:
 	Boy: Hey.
@@ -14,5 +14,5 @@ else:
 	%3 Boy: Go on. Hurry up!
 	%2 Boy: Don't keep me waiting.
 
-set GlobalState.dialogue_active = false
+set GlobalState.player_can_move = true
 => END

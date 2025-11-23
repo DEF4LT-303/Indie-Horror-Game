@@ -23,13 +23,14 @@ func _on_spawn(position: Vector2, direction: String) -> void:
 	curr_dir = direction
 	
 func _input(_event):
-	if GlobalState.dialogue_active:
+	if not GlobalState.player_can_move:
 		return 
 
 
 func _physics_process(_delta: float) -> void:
-	if GlobalState.dialogue_active:
+	if not GlobalState.player_can_move:
 		velocity = Vector2.ZERO
+		play_anim(false)
 		return
 		
 	var input_vector = Vector2.ZERO

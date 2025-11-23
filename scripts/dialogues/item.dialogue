@@ -1,6 +1,6 @@
 ~ knife
-set GlobalState.dialogue_active = true
+set GlobalState.player_can_move = false
 You picked up a knife!
 set GlobalState.items["knife"]["collected"] = true
-set GlobalState.dialogue_active = false
+set GlobalState.player_can_move = true
 => END

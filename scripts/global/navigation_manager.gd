@@ -12,6 +12,8 @@ var level_dictionary
 var room_array : Array
 
 func go_to_level(destination_level_tag, destination_door_tag) -> void:
+	GlobalState.player_can_move = false
+	
 	current_room = int(destination_level_tag)
 	destination_door = "Door_" + destination_door_tag
 	
@@ -31,6 +33,8 @@ func go_to_level(destination_level_tag, destination_door_tag) -> void:
 		call_deferred("_change_scene", scene_to_load)
 	else:
 		push_error("Failed to load scene: " + path)
+		
+	GlobalState.player_can_move = true
 
 
 func _change_scene(scene: PackedScene) -> void:

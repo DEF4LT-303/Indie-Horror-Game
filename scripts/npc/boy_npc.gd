@@ -14,7 +14,6 @@ func _ready():
 func _on_action(dialogue_resource, dialogue_start):
 	# Show dialogue
 	DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
-	#GlobalState.npcs["boy"]["talked"] = true
 	
 	# Mark NPC as pending removal (after dialogue)
 	GlobalState.mark_npc_pending_removal(NPC_NAME)
