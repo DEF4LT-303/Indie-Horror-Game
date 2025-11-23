@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4i76nqavvy1a"]
+[gd_scene load_steps=3 format=3 uid="uid://d4i76nqavvy1a"]
 
 [ext_resource type="Script" uid="uid://dbvlhhh0uqccb" path="res://scripts/level.gd" id="1_2q6dc"]
+[ext_resource type="Resource" uid="uid://cp323gd7j2x07" path="res://scripts/dialogues/intro_cutscene.dialogue" id="2_w7c3h"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2q6dc")
+dialogue_resource = ExtResource("2_w7c3h")

@@ -20,7 +20,7 @@ func _ready():
 	actionable.action_requested.connect(_on_action)
 
 func _on_action(dialogue_resource, dialogue_start):
-	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start)
+	DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
 	
 	if item_name != "":
 		GlobalState.mark_item_collected(item_name)
