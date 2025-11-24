@@ -1,6 +1,9 @@
 ~ knife
 set GlobalState.player_can_move = false
-You picked up a knife!
-set GlobalState.items["knife"]["collected"] = true
+There's a {{item_name}} on the table. Pick it up?
+- Pick up
+	set GlobalState.mark_item_collected(item_name)
+	Picked up {{item_name}}!
+- Leave
 set GlobalState.player_can_move = true
 => END
