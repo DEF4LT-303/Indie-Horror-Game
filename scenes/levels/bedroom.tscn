@@ -3078,5 +3078,9 @@ z_index = 3
 position = Vector2(325, 129)
 item_name = "knife"
 
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AmbientPlayer" type="AudioStreamPlayer" parent="."]
+
 [editable path="Doors/Door_E"]
 [editable path="CollectibleItem"]

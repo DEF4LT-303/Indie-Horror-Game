@@ -7,7 +7,7 @@ func _ready():
 	run_intro()
 
 func run_intro():
-	TransitionScene.transition()
+	TransitionScene.transition(3)
 	await TransitionScene.on_transition_finished
 	
 	# Start the intro dialogue
@@ -16,6 +16,8 @@ func run_intro():
 
 # Accept the argument even if unused
 func _on_dialogue_finished(_unused):
+	#await get_tree().create_timer(3).timeout
+	
 	NavigationManager.load_data_dictionary("res://data_library/apartment.json")
-	NavigationManager.go_to_level(0, "E")
+	NavigationManager.go_to_level(0, "E", 1, 10)
 	

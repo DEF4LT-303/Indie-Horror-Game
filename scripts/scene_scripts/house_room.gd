@@ -12,38 +12,19 @@ const COLOR_BLACKOUT    := Color(0, 0, 0, 1)
 
 var flicker_tween: Tween = null
 
-#func _enter_tree() -> void:
-	#var modulate_node = get_node_or_null("CanvasModulate")
-	#if modulate_node:
-		#apply_initial_lighting(modulate_node)
-
-	
-func apply_initial_lighting() -> void:
-	var room_name = self.name
-
-	if GlobalState.events.get("emergency_mode", false) \
-		or GlobalState.get_room_state(room_name, "emergency"):
-		modulate_node.color = COLOR_EMERGENCY
-
-	elif GlobalState.events.get("blackout", false) \
-		or GlobalState.get_room_state(room_name, "blackout"):
-		modulate_node.color = COLOR_BLACKOUT
-
-	elif GlobalState.get_room_state(room_name, "dark"):
-		modulate_node.color = COLOR_DARK_ROOM
-
-	else:
-		modulate_node.color = COLOR_NORMAL
-
-
-
-func _ready() -> void:
+func _ready():
 	super._ready()
 	apply_state_lighting()
+	GlobalState.connect("state_changed", Callable(self, "_on_state_changed"))
+	
+	AudioManager.play_room_audio(name)
 
+func _on_state_changed(changed_room_name):
+	if changed_room_name == name:
+		apply_state_lighting()
 
 # -------------------------------------------------------------
-# AUTO-LIGHTING BASED ON GLOBAL FLAGS (customize as needed)
+# AUTO-LIGHTING BASED ON GLOBAL FLAGS
 # -------------------------------------------------------------
 func apply_state_lighting() -> void:
 	var room_name = self.name
@@ -73,7 +54,7 @@ func fade_to_normal(duration := 0.8) -> void:
 	_fade_to(COLOR_NORMAL, duration)
 
 
-func fade_to_dark_room(duration := 1.2) -> void:
+func fade_to_dark_room(duration := 0) -> void:
 	_fade_to(COLOR_DARK_ROOM, duration)
 
 
@@ -86,7 +67,7 @@ func fade_to_blackout(duration := 0.7) -> void:
 
 
 # -------------------------------------------------------------
-# FLICKER SYSTEM (Paper Lily emergency vibe)
+# FLICKER SYSTEM
 # -------------------------------------------------------------
 func start_emergency_flicker(strength := 0.07, speed := 0.12) -> void:
 	stop_flicker()

@@ -21,6 +21,7 @@ NavigationManager="*res://scripts/global/navigation_manager.gd"
 TransitionScene="*res://scenes/elements/transition_scene.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GlobalState="*res://scripts/global/global_state.gd"
+AudioManager="*res://scripts/global/audio_manager.gd"
 
 [dialogue_manager]
 

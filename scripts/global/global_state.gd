@@ -1,5 +1,7 @@
 extends Node
 
+signal state_changed(room_name)
+
 # ------------------------------------
 # PLAYER CONTROL
 # ------------------------------------
@@ -39,12 +41,22 @@ var events := {
 # ROOM STATES 
 # ------------------------------------
 var rooms := {
-	 "LevelBedroom": {
-		 "dark": true,
-		 "blackout": false,
-		 "emergency": false,
-	 }
+	"LevelBedroom": {
+		"dark": true,
+		"blackout": false,
+		"emergency": false,
+		"bgm_override": "res://sounds/horror-atmospheric-bg.mp3",
+		"ambient_override": "res://sounds/indoor-rain-bg.mp3",
+	},
+	"LevelBathroom": {
+		"dark": true,
+		"blackout": false,
+		"emergency": false,
+		"bgm_override": null,
+		"ambient_override": null,
+	}
 }
+
 
 
 # ------------------------------------
@@ -103,13 +115,38 @@ func is_item_visible(item_name: String) -> bool:
 # ---------------------------------------------------
 # ROOM STATE METHODS
 # ---------------------------------------------------
-func set_room_state(room_name: String, key: String, value: bool) -> void:
-	if not rooms.has(room_name):
-		rooms[room_name] = {}  # auto-create room
-	rooms[room_name][key] = value
-
-
 func get_room_state(room_name: String, key: String, default := false) -> bool:
 	if not rooms.has(room_name):
 		return default
 	return rooms[room_name].get(key, default)
+	
+func set_room_state(room_name: String, key: String, value) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name][key] = value
+	emit_signal("state_changed", room_name)
+
+func set_bgm_override(room_name: String, path: String) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name]["bgm_override"] = path
+	emit_signal("state_changed", room_name)
+
+func clear_bgm_override(room_name: String) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name]["bgm_override"] = null
+	emit_signal("state_changed", room_name)
+
+
+func set_ambient_override(room_name: String, path: String) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name]["ambient_override"] = path
+	emit_signal("state_changed", room_name)
+
+func clear_ambient_override(room_name: String) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name]["ambient_override"] = null
+	emit_signal("state_changed", room_name)

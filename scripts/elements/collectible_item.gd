@@ -28,8 +28,8 @@ func _process(_delta):
 			visible = false
 			collision.disabled = true
 
-func _on_action(dialogue_resource, dialogue_start):
-	DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start, [{"item_name": item_name}])
+func _on_action(res, dialogue_start):
+	DialogueManager.show_dialogue_balloon(res, dialogue_start, [{"item_name": item_name}])
 	
 	monitoring_pickup = true
 	await DialogueManager.dialogue_ended
