@@ -1,6 +1,7 @@
 extends Node
 
 signal state_changed(room_name)
+signal current_room_changed(room_name)
 
 # ------------------------------------
 # PLAYER CONTROL
@@ -12,6 +13,7 @@ var player_can_move = true
 # ------------------------------------
 var current_day := 1
 var time_of_day := 0.0
+var current_room: String = ""
 
 
 # ------------------------------------
@@ -42,8 +44,8 @@ var events := {
 # ------------------------------------
 var rooms := {
 	"LevelBedroom": {
-		"dark": true,
-		"blackout": false,
+		"dark": false,
+		"blackout": true,
 		"emergency": false,
 		"bgm_override": "res://sounds/horror-atmospheric-bg.mp3",
 		"ambient_override": "res://sounds/indoor-rain-bg.mp3",
@@ -53,11 +55,9 @@ var rooms := {
 		"blackout": false,
 		"emergency": false,
 		"bgm_override": null,
-		"ambient_override": null,
+		"ambient_override": "res://sounds/indoor-rain-bg.mp3",
 	}
 }
-
-
 
 # ------------------------------------
 # ITEM SYSTEM
@@ -71,6 +71,9 @@ var items := {
 
 var inventory := {}
 
+# ---------------------------------------------------
+# PLAYER METHODS
+# ---------------------------------------------------
 
 # ---------------------------------------------------
 # NPC METHODS
@@ -138,7 +141,6 @@ func clear_bgm_override(room_name: String) -> void:
 	rooms[room_name]["bgm_override"] = null
 	emit_signal("state_changed", room_name)
 
-
 func set_ambient_override(room_name: String, path: String) -> void:
 	if not rooms.has(room_name):
 		return
@@ -150,3 +152,10 @@ func clear_ambient_override(room_name: String) -> void:
 		return
 	rooms[room_name]["ambient_override"] = null
 	emit_signal("state_changed", room_name)
+
+
+func set_current_room(room_name: String) -> void:
+	if current_room == room_name:
+		return
+	current_room = room_name
+	current_room_changed.emit(room_name)

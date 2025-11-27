@@ -9,7 +9,7 @@ if GlobalState.is_npc_talked_to("boy") == false:
 	
 	set GlobalState.items["knife"]["visible"] = true
 	set GlobalState.npc_has_been_talked_to("boy")
-	set GlobalState.set_room_state("LevelBathroom", "emergency", true)
+	set GlobalState.set_room_state("LevelBathroom", "blackout", true)
 
 else:
 	%3 Boy: Go on. Hurry up!

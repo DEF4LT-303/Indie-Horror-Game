@@ -4,13 +4,35 @@ class_name Player
 
 @export var speed = 100
 var curr_dir = "down"
+var current_room: String = ""
 
 @onready var actionable_finder: Area2D = $Direction/ActionableFinder
+@onready var light: PointLight2D = $PointLight2D
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("front_idle")
 	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)
+	GlobalState.connect("state_changed", Callable(self, "_on_room_changed"))
+	GlobalState.connect("current_room_changed", Callable(self, "_on_current_room_changed"))
 	
+	_on_current_room_changed(GlobalState.current_room)
+
+func _update_light():
+	# Only enable the light if the current room has blackout OR global blackout event is active
+	var room_blackout = GlobalState.get_room_state(GlobalState.current_room, "blackout")
+	var event_blackout = GlobalState.events.get("blackout", false)
+
+	light.visible = room_blackout or event_blackout
+
+func _on_room_changed(changed_room_name: String):
+	if changed_room_name == current_room:
+		_update_light()
+
+
+func _on_current_room_changed(room_name: String) -> void:
+	current_room = room_name
+	_update_light()
+
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact"):
 		var actionables = actionable_finder.get_overlapping_areas()

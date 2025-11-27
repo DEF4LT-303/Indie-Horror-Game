@@ -8,6 +8,7 @@ class_name Room
 var player : Player = null
 
 func _ready() -> void:
+	GlobalState.set_current_room(name)
 	#getNode("$RoomNumber").text = str(NavigationManager.current_room)
 	var level_data = NavigationManager.level_dictionary[0]
 	load_data_from_dictionary(level_data.Rooms[NavigationManager.current_room])
