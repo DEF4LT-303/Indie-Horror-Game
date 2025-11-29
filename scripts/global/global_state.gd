@@ -44,8 +44,8 @@ var events := {
 # ------------------------------------
 var rooms := {
 	"LevelBedroom": {
-		"dark": false,
-		"blackout": true,
+		"dark": true,
+		"blackout": false,
 		"emergency": false,
 		"bgm_override": "res://sounds/horror-atmospheric-bg.mp3",
 		"ambient_override": "res://sounds/indoor-rain-bg.mp3",

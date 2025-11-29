@@ -39,7 +39,6 @@ func apply_state_lighting() -> void:
 		fade_to_blackout()
 
 	elif GlobalState.get_room_state(room_name, "dark"):
-		print(room_name)
 		fade_to_dark_room()
 
 	else:

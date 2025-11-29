@@ -19,5 +19,5 @@ func _on_dialogue_finished(_unused):
 	#await get_tree().create_timer(3).timeout
 	
 	NavigationManager.load_data_dictionary("res://data_library/apartment.json")
-	NavigationManager.go_to_level(0, "E", 1, 10)
+	NavigationManager.go_to_level(0, "W", 1, 10)
 	

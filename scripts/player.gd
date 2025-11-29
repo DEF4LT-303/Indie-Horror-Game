@@ -67,14 +67,15 @@ func _physics_process(_delta: float) -> void:
 		input_vector.y = -1
 
 	if input_vector != Vector2.ZERO:
-		velocity = input_vector * speed
 		update_direction(input_vector)
 		play_anim(true)
-	else:
-		velocity = Vector2.ZERO
-		play_anim(false)
+		var motion = input_vector * speed * _delta
 
-	move_and_slide()
+		var collision = move_and_collide(motion)
+		if collision:
+			return
+	else:
+		play_anim(false)
 
 func update_direction(input_vector: Vector2) -> void:
 	if abs(input_vector.x) > abs(input_vector.y):
@@ -85,10 +86,10 @@ func update_direction(input_vector: Vector2) -> void:
 func play_anim(moving: bool) -> void:
 	var anim = $AnimatedSprite2D
 	match curr_dir:
-		"right":
+		"left":
 			anim.flip_h = true
 			anim.play("side_walk" if moving else "side_idle")
-		"left":
+		"right":
 			anim.flip_h = false
 			anim.play("side_walk" if moving else "side_idle")
 		"up":
