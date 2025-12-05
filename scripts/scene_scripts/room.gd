@@ -27,8 +27,9 @@ func _ready() -> void:
 # --------------------------
 func spawn_player():
 	if NavigationManager.player:
-		add_child(NavigationManager.player)
 		player = NavigationManager.player
+		if player.get_parent() != self:
+			add_child(player)
 	else:
 		player = player_packed_scene.instantiate()
 		NavigationManager.player = player
@@ -36,16 +37,29 @@ func spawn_player():
 
 
 func spawn_player_at_tag(tag: String):
-	var door_name = "Door_" + tag
-	var door = find_door_by_name(door_name)
-
+	var door = find_door_by_name("Door_" + tag)
 	if door:
 		player.global_position = door.spawn.global_position
 		#player.set_direction(door.spawn_direction)
 	else:
-		push_warning("Spawn door not found: " + door_name)
+		# Try to spawn at a marker instead
+		var marker = get_node_or_null("SpawnPoints/" + tag)
+		if marker:
+			spawn_player()
+			player.global_position = marker.global_position
+		else:
+			push_warning("Spawn tag not found as door or marker: " + tag)
+			
 
-
+func spawn_player_at_marker(marker_name: String, direction: String = ""):
+	var marker = get_node_or_null("SpawnPoints/" + marker_name)
+	if marker:
+		spawn_player() # ensure player exists
+		player.global_position = marker.global_position
+		if direction != "":
+			player.set_direction(direction) # optional if your player supports it
+	else:
+		push_warning("Spawn marker not found: " + marker_name)
 # --------------------------
 # DOOR LOGIC
 # --------------------------

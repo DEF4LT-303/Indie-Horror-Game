@@ -129,14 +129,21 @@ position = Vector2(29, -3)
 [node name="CollisionShape2D" parent="Doors/Door_W" index="1"]
 position = Vector2(-3, -3)
 
-[node name="DoorShadowW" type="Sprite2D" parent="."]
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="IntroSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(278, 58)
+
+[node name="DoorShadows" type="Node2D" parent="."]
+
+[node name="DoorShadowW" type="Sprite2D" parent="DoorShadows"]
 z_index = 2
 position = Vector2(160.11969, 112.11446)
 rotation = 1.5707964
 scale = Vector2(1.6602068, 0.5063853)
 texture = SubResource("GradientTexture2D_7lolw")
 
-[node name="DoorShadowS" type="Sprite2D" parent="."]
+[node name="DoorShadowS" type="Sprite2D" parent="DoorShadows"]
 z_index = 2
 position = Vector2(207.99998, 168.50002)
 scale = Vector2(0.65624994, 0.26562518)

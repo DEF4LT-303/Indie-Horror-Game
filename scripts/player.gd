@@ -100,3 +100,7 @@ func play_anim(moving: bool) -> void:
 		"down":
 			anim.flip_h = false
 			anim.play("front_walk" if moving else "front_idle")
+			
+func play_anim_with_dir(dir: String) -> void:
+	curr_dir = dir
+	play_anim(false)

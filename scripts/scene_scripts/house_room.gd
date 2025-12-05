@@ -16,9 +16,19 @@ var flicker_tween: Tween = null
 func _ready():
 	super._ready()
 	apply_state_lighting()
+	
 	GlobalState.connect("state_changed", Callable(self, "_on_state_changed"))
+	GlobalState.set_room_state(name, "visited", true)
 	
 	AudioManager.play_room_audio(name)
+	
+	play_cutscene()
+
+func play_cutscene():
+	if name == "LevelBedroom" and !GlobalState.get_room_state(name, "cutscene1"):
+		await CutsceneController.play_cutscene("bedroom_intro")
+		GlobalState.set_room_state(name, "cutscene1", true)
+
 
 func _on_state_changed(changed_room_name):
 	if changed_room_name == name:

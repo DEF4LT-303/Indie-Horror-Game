@@ -6,6 +6,8 @@ var current_room : int = 0
 var destination_door 
 var spawn_door_tag
 
+var custom_spawn_point: String = ""
+
 var player : Player = null
 
 var level_dictionary
@@ -15,13 +17,11 @@ func go_to_level(destination_level_tag, destination_door_tag, fade_out_duration 
 	GlobalState.player_can_move = false
 	
 	current_room = int(destination_level_tag)
-	destination_door = "Door_" + destination_door_tag
+	spawn_door_tag = destination_door_tag  # can be normal door or custom marker name
 	
 	# Start fade
 	TransitionScene.transition(fade_out_duration, fade_in_duration)
 	await TransitionScene.on_transition_finished
-	
-	spawn_door_tag = destination_door_tag
 	
 	var roomData = level_dictionary[0].Rooms[int(destination_level_tag)]
 	var path = "res://scenes/levels/" + roomData.Room_Node
@@ -29,13 +29,11 @@ func go_to_level(destination_level_tag, destination_door_tag, fade_out_duration 
 	
 	var scene_to_load: PackedScene = load(path)
 	if scene_to_load:
-		# Call deferred to avoid issues inside await
 		call_deferred("_change_scene", scene_to_load)
 	else:
 		push_error("Failed to load scene: " + path)
 		
 	GlobalState.player_can_move = true
-
 
 func _change_scene(scene: PackedScene) -> void:
 	get_tree().change_scene_to_packed(scene)
