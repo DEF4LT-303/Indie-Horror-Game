@@ -13,6 +13,13 @@
 						"Destination_Door_Tag" : "S",
 						"Spawn_Direction": "right",
 						"Teleport" : false
+					},
+					{
+						"Name" : "Door_Hallway",
+						"Destination_Level_Tag" : "2",
+						"Destination_Door_Tag" : "Bedroom",
+						"Spawn_Direction": "up",
+						"Teleport" : false
 					}
 				]
 			},

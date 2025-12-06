@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=4 uid="uid://csnorfhp2j6sp"]
+[gd_scene load_steps=24 format=4 uid="uid://csnorfhp2j6sp"]
 
-[ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/house_room.gd" id="1_v7lbh"]
+[ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/bedroom.gd" id="1_v7lbh"]
 [ext_resource type="TileSet" uid="uid://dy35wl27clvw1" path="res://assets/tilesets/interiors.tres" id="2_2qq7b"]
 [ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/point_light_2d.gd" id="4_wvg2w"]
 [ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="5_670e5"]
@@ -38,8 +38,16 @@ fill_to = Vector2(0.517094, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_l4ilk"]
 gradient = SubResource("Gradient_ijtrw")
-fill_from = Vector2(0, 0.6588785)
-fill_to = Vector2(0.004672897, 0)
+fill_from = Vector2(0, 0.88785046)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_l4ilk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g88aa"]
+gradient = SubResource("Gradient_l4ilk")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hbd3v"]
 shader = ExtResource("7_2qq7b")
@@ -129,12 +137,24 @@ texture = SubResource("GradientTexture2D_670e5")
 
 [node name="Door_W" parent="Doors" instance=ExtResource("5_670e5")]
 position = Vector2(155, 147)
+locked = false
+dialogue_resource = null
 
 [node name="Spawn" parent="Doors/Door_W" index="0"]
 position = Vector2(29, -3)
 
 [node name="CollisionShape2D" parent="Doors/Door_W" index="1"]
 position = Vector2(-3, -3)
+
+[node name="Door_Hallway" parent="Doors" instance=ExtResource("5_670e5")]
+position = Vector2(211, 176)
+rotation = 4.712389
+
+[node name="Spawn" parent="Doors/Door_Hallway" index="0"]
+position = Vector2(29, -3)
+
+[node name="CollisionShape2D" parent="Doors/Door_Hallway" index="1"]
+position = Vector2(1, -3)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
@@ -156,12 +176,21 @@ position = Vector2(207.99998, 168.50002)
 scale = Vector2(0.65624994, 0.26562518)
 texture = SubResource("GradientTexture2D_7lolw")
 
-[node name="MonitorRedScreen" type="PointLight2D" parent="Overlays"]
-position = Vector2(195.5, 19.5)
-scale = Vector2(0.35937485, 0.54687494)
-color = Color(0.98274976, 6.08854e-06, 1.540184e-06, 1)
+[node name="Monitor" type="Node2D" parent="Overlays"]
+
+[node name="MonitorRedLight" type="PointLight2D" parent="Overlays/Monitor"]
+position = Vector2(195.5, 21)
+scale = Vector2(0.35937485, 0.59375)
+color = Color(0.57256395, 0.00050752674, 0.0002778107, 1)
 energy = 2.86
 texture = SubResource("GradientTexture2D_l4ilk")
+
+[node name="MonitorRedScreen" type="Sprite2D" parent="Overlays/Monitor"]
+modulate = Color(0.40390328, 8.4228816e-07, 9.62615e-08, 1)
+z_index = 3
+position = Vector2(195.5, 8.5)
+scale = Vector2(0.35937482, 0.20312496)
+texture = SubResource("GradientTexture2D_g88aa")
 
 [node name="BoundaryCollision" type="StaticBody2D" parent="."]
 visible = false
@@ -228,4 +257,5 @@ position = Vector2(46, -7.75)
 shape = SubResource("RectangleShape2D_ijtrw")
 
 [editable path="Doors/Door_W"]
+[editable path="Doors/Door_Hallway"]
 [editable path="CollectibleItem"]

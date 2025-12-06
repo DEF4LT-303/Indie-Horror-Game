@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpcfs7k3mwbqs"]
+[gd_scene load_steps=3 format=3 uid="uid://cpcfs7k3mwbqs"]
 
 [ext_resource type="Script" uid="uid://dle8umoowxbse" path="res://scripts/scene_scripts/room.gd" id="1_36trf"]
+[ext_resource type="Resource" uid="uid://cj5v76i62d42b" path="res://scripts/dialogues/locked_door.dialogue" id="2_ffxv4"]
 
 [node name="Room" type="Node"]
 script = ExtResource("1_36trf")
+dialogue_resource = ExtResource("2_ffxv4")
 metadata/_custom_type_script = "uid://dle8umoowxbse"

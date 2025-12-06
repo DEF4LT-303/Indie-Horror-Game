@@ -90,10 +90,10 @@ func play_sfx(path: String, volume_db: float = 0.0) -> AudioStreamPlayer:
 	player.volume_db = volume_db
 	player.play()
 
-	# Connect finished signal only once using a Callable
-	var recycle_callable = Callable(self, "_recycle_sfx_player")
-	if not player.is_connected("finished", recycle_callable):
-		player.finished.connect(recycle_callable)
+	# Use a lambda to recycle the player when finished
+	player.finished.connect(func(p=player):
+		_recycle_sfx_player(p)
+	)
 
 	return player
 
@@ -104,14 +104,18 @@ func _get_sfx_player() -> AudioStreamPlayer:
 		if not p.playing:
 			return p
 
-	# Create new player if pool full
-	var p = AudioStreamPlayer.new()
-	add_child(p)
-	sfx_pool.append(p)
-	return p
-	
+	# Create new player if pool is not full
+	if sfx_pool.size() < MAX_SFX:
+		var p = AudioStreamPlayer.new()
+		add_child(p)
+		sfx_pool.append(p)
+		return p
+
+	# Fallback: reuse first player in pool if max reached
+	return sfx_pool[0]
+
 
 func _recycle_sfx_player(player: AudioStreamPlayer) -> void:
-	# Stop and clear stream
-	player.stop()
+	if player.playing:
+		player.stop()
 	player.stream = null

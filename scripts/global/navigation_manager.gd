@@ -13,7 +13,7 @@ var player : Player = null
 var level_dictionary
 var room_array : Array
 
-func go_to_level(destination_level_tag, destination_door_tag, fade_out_duration := 1, fade_in_duration := 1) -> void:
+func go_to_scene(destination_level_tag, destination_door_tag, fade_out_duration := 1, fade_in_duration := 1) -> void:
 	GlobalState.player_can_move = false
 	
 	current_room = int(destination_level_tag)

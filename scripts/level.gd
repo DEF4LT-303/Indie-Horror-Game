@@ -23,4 +23,4 @@ func run_intro():
 # Accept the argument even if unused
 func _on_dialogue_finished(_unused):
 	NavigationManager.load_data_dictionary("res://data_library/apartment.json")
-	NavigationManager.go_to_level(0, "IntroSpawn", 1, 10)
+	NavigationManager.go_to_scene(0, "IntroSpawn", 1, 10)
