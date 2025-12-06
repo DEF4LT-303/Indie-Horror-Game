@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://csnorfhp2j6sp"]
+[gd_scene load_steps=22 format=4 uid="uid://csnorfhp2j6sp"]
 
 [ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/house_room.gd" id="1_v7lbh"]
 [ext_resource type="TileSet" uid="uid://dy35wl27clvw1" path="res://assets/tilesets/interiors.tres" id="2_2qq7b"]
@@ -34,6 +34,13 @@ gradient = SubResource("Gradient_w7kh3")
 fill_from = Vector2(0.5726496, 0.98717946)
 fill_to = Vector2(0.517094, 0)
 
+[sub_resource type="Gradient" id="Gradient_ijtrw"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l4ilk"]
+gradient = SubResource("Gradient_ijtrw")
+fill_from = Vector2(0, 0.6588785)
+fill_to = Vector2(0.004672897, 0)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hbd3v"]
 shader = ExtResource("7_2qq7b")
 shader_parameter/shaking = true
@@ -42,7 +49,7 @@ shader_parameter/noise_scale = 10.0
 shader_parameter/noise_speed = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4ilk"]
-size = Vector2(38.5, 20.5)
+size = Vector2(60.5, 23.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijtrw"]
 size = Vector2(18, 19.5)
@@ -134,20 +141,27 @@ position = Vector2(-3, -3)
 [node name="IntroSpawn" type="Marker2D" parent="SpawnPoints"]
 position = Vector2(278, 58)
 
-[node name="DoorShadows" type="Node2D" parent="."]
+[node name="Overlays" type="Node2D" parent="."]
 
-[node name="DoorShadowW" type="Sprite2D" parent="DoorShadows"]
+[node name="DoorShadowW" type="Sprite2D" parent="Overlays"]
 z_index = 2
 position = Vector2(160.11969, 112.11446)
 rotation = 1.5707964
 scale = Vector2(1.6602068, 0.5063853)
 texture = SubResource("GradientTexture2D_7lolw")
 
-[node name="DoorShadowS" type="Sprite2D" parent="DoorShadows"]
+[node name="DoorShadowS" type="Sprite2D" parent="Overlays"]
 z_index = 2
 position = Vector2(207.99998, 168.50002)
 scale = Vector2(0.65624994, 0.26562518)
 texture = SubResource("GradientTexture2D_7lolw")
+
+[node name="MonitorRedScreen" type="PointLight2D" parent="Overlays"]
+position = Vector2(195.5, 19.5)
+scale = Vector2(0.35937485, 0.54687494)
+color = Color(0.98274976, 6.08854e-06, 1.540184e-06, 1)
+energy = 2.86
+texture = SubResource("GradientTexture2D_l4ilk")
 
 [node name="BoundaryCollision" type="StaticBody2D" parent="."]
 visible = false
@@ -196,7 +210,7 @@ dialogue_start = "Desktop"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Desktop/Area2D"]
 z_index = 99
-position = Vector2(-37.25, -1.25)
+position = Vector2(-26.25, 0.25)
 shape = SubResource("RectangleShape2D_l4ilk")
 
 [node name="Lamp" type="Node" parent="Interactables"]

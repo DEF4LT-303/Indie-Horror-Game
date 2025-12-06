@@ -250,17 +250,17 @@ func _action_play_sound(action: Dictionary) -> void:
 	
 	if AudioManager and AudioManager.has_method("play_sfx"):
 		AudioManager.play_sfx(sound_path, volume)
-	else:
-		# Fallback: create AudioStreamPlayer
-		var audio_player = AudioStreamPlayer.new()
-		var stream = load(sound_path)
-		if stream:
-			audio_player.stream = stream
-			audio_player.volume_db = volume
-			add_child(audio_player)
-			audio_player.play()
-			await audio_player.finished
-			audio_player.queue_free()
+	#else:
+		## Fallback: create AudioStreamPlayer
+		#var audio_player = AudioStreamPlayer.new()
+		#var stream = load(sound_path)
+		#if stream:
+			#audio_player.stream = stream
+			#audio_player.volume_db = volume
+			#add_child(audio_player)
+			#audio_player.play()
+			#await audio_player.finished
+			#audio_player.queue_free()
 
 ## Action: Set a global event flag
 func _action_set_event(action: Dictionary) -> void:

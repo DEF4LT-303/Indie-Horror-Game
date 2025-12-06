@@ -46,15 +46,15 @@ func apply_state_lighting() -> void:
 
 	if GlobalState.events.get("emergency_mode", false) \
 			or GlobalState.get_room_state(room_name, "emergency"):
-		fade_to_emergency()
+		fade_to_emergency(0, true)
 		start_emergency_flicker()
 
 	elif GlobalState.events.get("blackout", false) \
 			or GlobalState.get_room_state(room_name, "blackout"):
-		fade_to_blackout()
+		fade_to_blackout(0, true)
 
 	elif GlobalState.get_room_state(room_name, "dark"):
-		fade_to_dark_room()
+		fade_to_dark_room(0, true)
 
 	else:
 		fade_to_normal()

@@ -51,16 +51,16 @@ var rooms := {
 		"emergency": false,
 		"visited": false,
 		"cutscene1": false,
-		"bgm_override": "res://sounds/horror-atmospheric-bg.mp3",
-		"ambient_override": "res://sounds/indoor-rain-bg.mp3",
+		"bgm_override": "res://assets/audio/BGM/bedroom_nightmare.mp3",
+		"ambient_override": "res://assets/audio/BGM/indoor-rain-bg.mp3",
 	},
 	"LevelBathroom": {
 		"dark": true,
 		"blackout": false,
 		"emergency": false,
 		"visited": false,
-		"bgm_override": null,
-		"ambient_override": "res://sounds/indoor-rain-bg.mp3",
+		"bgm_override": "res://assets/audio/BGM/bedroom_nightmare.mp3",
+		"ambient_override": "res://assets/audio/BGM/indoor-rain-bg.mp3",
 	}
 }
 

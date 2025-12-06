@@ -10,6 +10,12 @@ func run_intro():
 	TransitionScene.transition(3)
 	await TransitionScene.on_transition_finished
 	
+	# Window tap
+	var sfx_player = AudioManager.play_sfx("res://assets/audio/window_knock.mp3", -6)
+	if sfx_player:
+		await sfx_player.finished
+		await get_tree().create_timer(2.0).timeout
+		
 	# Start the intro dialogue
 	DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_finished)

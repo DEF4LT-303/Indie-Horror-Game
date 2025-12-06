@@ -30,7 +30,7 @@ func play_room_audio(room_name: String):
 	var bgm_to_play: AudioStream = load(bgm_path) if bgm_path != null else null
 	var amb_to_play: AudioStream = load(amb_path) if amb_path != null else null
 
-	_handle_audio_change(bgm_player, bgm_to_play, -5)
+	_handle_audio_change(bgm_player, bgm_to_play, -20)
 	_handle_audio_change(ambient_player, amb_to_play, -15)
 
 
@@ -71,3 +71,47 @@ func _crossfade(player: AudioStreamPlayer, new_stream: AudioStream, target_volum
 		player.play()
 	)
 	t.tween_property(player, "volume_db", target_volume_db, 0.4)
+	
+	# ----------------------
+# SFX PLAYER POOL
+# ----------------------
+
+var sfx_pool: Array[AudioStreamPlayer] = []
+const MAX_SFX = 16   # prevents infinite build-up
+
+func play_sfx(path: String, volume_db: float = 0.0) -> AudioStreamPlayer:
+	var stream: AudioStream = load(path)
+	if stream == null:
+		push_warning("Invalid SFX path: " + path)
+		return null
+
+	var player := _get_sfx_player()
+	player.stream = stream
+	player.volume_db = volume_db
+	player.play()
+
+	# Connect finished signal only once using a Callable
+	var recycle_callable = Callable(self, "_recycle_sfx_player")
+	if not player.is_connected("finished", recycle_callable):
+		player.finished.connect(recycle_callable)
+
+	return player
+
+
+func _get_sfx_player() -> AudioStreamPlayer:
+	# Reuse available player from pool
+	for p in sfx_pool:
+		if not p.playing:
+			return p
+
+	# Create new player if pool full
+	var p = AudioStreamPlayer.new()
+	add_child(p)
+	sfx_pool.append(p)
+	return p
+	
+
+func _recycle_sfx_player(player: AudioStreamPlayer) -> void:
+	# Stop and clear stream
+	player.stop()
+	player.stream = null
