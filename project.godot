@@ -21,10 +21,17 @@ NavigationManager="*res://scripts/global/navigation_manager.gd"
 TransitionScene="*res://scenes/elements/transition_scene.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GlobalState="*res://scripts/global/global_state.gd"
+AudioManager="*res://scripts/global/audio_manager.gd"
+CutsceneController="*res://scripts/scene_scripts/cutscene_controller.gd"
+CutsceneDB="*res://scripts/scene_scripts/cutscene_db_resource.gd"
 
 [dialogue_manager]
 
 runtime/balloon_path="res://GUI/dialogues/balloon.tscn"
+
+[editor]
+
+movie_writer/movie_file="F:/Godot Projects/Movies/test.avi"
 
 [editor_plugins]
 
@@ -40,7 +47,7 @@ interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://scripts/dialogues/item.dialogue", "res://scripts/dialogues/intro_cutscene.dialogue", "res://GUI/dialogues/npcs/boy_npc.dialogue")
+locale/translations_pot_files=PackedStringArray("res://scripts/dialogues/item.dialogue", "res://scripts/dialogues/intro_cutscene.dialogue", "res://GUI/dialogues/npcs/boy_npc.dialogue", "res://scripts/dialogues/interactables.dialogue", "res://scripts/dialogues/locked_door.dialogue")
 
 [layer_names]
 

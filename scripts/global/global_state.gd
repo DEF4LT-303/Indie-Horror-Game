@@ -1,5 +1,10 @@
 extends Node
 
+## Manages all Global states
+
+signal state_changed(room_name)
+signal current_room_changed(room_name)
+
 # ------------------------------------
 # PLAYER CONTROL
 # ------------------------------------
@@ -10,6 +15,7 @@ var player_can_move = true
 # ------------------------------------
 var current_day := 1
 var time_of_day := 0.0
+var current_room: String = ""
 
 
 # ------------------------------------
@@ -39,13 +45,24 @@ var events := {
 # ROOM STATES 
 # ------------------------------------
 var rooms := {
-	 "LevelBedroom": {
-		 "dark": true,
-		 "blackout": false,
-		 "emergency": false,
-	 }
+	"LevelBedroom": {
+		"dark": true,
+		"blackout": false,
+		"emergency": false,
+		"visited": false,
+		"cutscene1": false,
+		"bgm_override": "res://assets/audio/BGM/bedroom_nightmare.mp3",
+		"ambient_override": "res://assets/audio/BGM/indoor-rain-bg.mp3",
+	},
+	"LevelBathroom": {
+		"dark": true,
+		"blackout": false,
+		"emergency": false,
+		"visited": false,
+		"bgm_override": "res://assets/audio/BGM/bedroom_nightmare.mp3",
+		"ambient_override": "res://assets/audio/BGM/indoor-rain-bg.mp3",
+	}
 }
-
 
 # ------------------------------------
 # ITEM SYSTEM
@@ -59,6 +76,9 @@ var items := {
 
 var inventory := {}
 
+# ---------------------------------------------------
+# PLAYER METHODS
+# ---------------------------------------------------
 
 # ---------------------------------------------------
 # NPC METHODS
@@ -103,13 +123,44 @@ func is_item_visible(item_name: String) -> bool:
 # ---------------------------------------------------
 # ROOM STATE METHODS
 # ---------------------------------------------------
-func set_room_state(room_name: String, key: String, value: bool) -> void:
-	if not rooms.has(room_name):
-		rooms[room_name] = {}  # auto-create room
-	rooms[room_name][key] = value
-
-
 func get_room_state(room_name: String, key: String, default := false) -> bool:
 	if not rooms.has(room_name):
 		return default
 	return rooms[room_name].get(key, default)
+	
+func set_room_state(room_name: String, key: String, value) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name][key] = value
+	emit_signal("state_changed", room_name)
+
+func set_bgm_override(room_name: String, path: String) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name]["bgm_override"] = path
+	emit_signal("state_changed", room_name)
+
+func clear_bgm_override(room_name: String) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name]["bgm_override"] = null
+	emit_signal("state_changed", room_name)
+
+func set_ambient_override(room_name: String, path: String) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name]["ambient_override"] = path
+	emit_signal("state_changed", room_name)
+
+func clear_ambient_override(room_name: String) -> void:
+	if not rooms.has(room_name):
+		return
+	rooms[room_name]["ambient_override"] = null
+	emit_signal("state_changed", room_name)
+
+
+func set_current_room(room_name: String) -> void:
+	if current_room == room_name:
+		return
+	current_room = room_name
+	current_room_changed.emit(room_name)

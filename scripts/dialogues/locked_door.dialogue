@@ -1,0 +1,7 @@
+~ start
+set GlobalState.player_can_move = false
+
+Hei: The door is locked.
+
+set GlobalState.player_can_move = true
+=> END

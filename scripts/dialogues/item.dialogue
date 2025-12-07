@@ -3,6 +3,7 @@ set GlobalState.player_can_move = false
 There's a {{item_name}} on the table. Pick it up?
 - Pick up
 	set GlobalState.mark_item_collected(item_name)
+	set GlobalState.set_room_state("LevelBedroom", "blackout", true)
 	Picked up {{item_name}}!
 - Leave
 set GlobalState.player_can_move = true

@@ -8,10 +8,17 @@
 				"Room_Node"  : "bedroom.tscn",
 				"Doors"		 : [
 					{
-						"Name" : "Door_E",
+						"Name" : "Door_W",
 						"Destination_Level_Tag" : "1",
 						"Destination_Door_Tag" : "S",
 						"Spawn_Direction": "right",
+						"Teleport" : false
+					},
+					{
+						"Name" : "Door_Hallway",
+						"Destination_Level_Tag" : "2",
+						"Destination_Door_Tag" : "Bedroom",
+						"Spawn_Direction": "up",
 						"Teleport" : false
 					}
 				]
@@ -23,7 +30,7 @@
 					{
 						"Name" : "Door_S",
 						"Destination_Level_Tag" : "0",
-						"Destination_Door_Tag" : "E",
+						"Destination_Door_Tag" : "W",
 						"Spawn_Direction": "up",
 						"Teleport" : false
 					}

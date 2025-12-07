@@ -1,15 +1,17 @@
-[gd_scene load_steps=27 format=4 uid="uid://d2kbkyku8ivkh"]
+[gd_scene load_steps=26 format=4 uid="uid://d2kbkyku8ivkh"]
 
-[ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/house_room.gd" id="1_hk6ca"]
-[ext_resource type="Texture2D" uid="uid://c4yoyk0cmjgfp" path="res://art/room and furnitures/messy furniture set updated v2.png" id="2_ijboq"]
-[ext_resource type="Texture2D" uid="uid://cppb1vef858ku" path="res://art/room and furnitures/messy_room_door_tiles.png" id="3_8i37m"]
-[ext_resource type="Texture2D" uid="uid://lf5y5fubww1n" path="res://art/room and furnitures/window.png" id="4_lasd6"]
+[ext_resource type="Script" uid="uid://bu6621r12ojsv" path="res://scripts/scene_scripts/bathroom.gd" id="1_bng1x"]
+[ext_resource type="Texture2D" uid="uid://lf5y5fubww1n" path="res://assets/room and furnitures/window.png" id="2_it6ff"]
+[ext_resource type="Texture2D" uid="uid://bxgogodldgarf" path="res://assets/particles/light.png" id="3_bng1x"]
 [ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/point_light_2d.gd" id="5_otne7"]
 [ext_resource type="PackedScene" uid="uid://b03u5lqcdwa3t" path="res://scenes/npc/boy_npc.tscn" id="6_30bfc"]
 [ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="9_augiv"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bng1x"]
+load_path = "res://.godot/imported/messy furniture set updated v2.png-a05dc6f39aa367230131fd1a22515f4f.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
-texture = ExtResource("2_ijboq")
+texture = SubResource("CompressedTexture2D_bng1x")
 8:0/0 = 0
 9:0/0 = 0
 0:1/0 = 0
@@ -387,8 +389,11 @@ texture = ExtResource("2_ijboq")
 20:25/0 = 0
 21:25/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hbd3v"]
+load_path = "res://.godot/imported/messy_room_door_tiles.png-fe9de393bac6e5365ad4508a3af7c9c7.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7kh3"]
-texture = ExtResource("3_8i37m")
+texture = SubResource("CompressedTexture2D_hbd3v")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -711,7 +716,7 @@ sources/0 = SubResource("TileSetAtlasSource_4wyf3")
 sources/1 = SubResource("TileSetAtlasSource_w7kh3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_71j4m"]
-texture = ExtResource("2_ijboq")
+texture = SubResource("CompressedTexture2D_bng1x")
 8:0/0 = 0
 9:0/0 = 0
 0:1/0 = 0
@@ -1090,7 +1095,7 @@ texture = ExtResource("2_ijboq")
 21:25/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
-texture = ExtResource("3_8i37m")
+texture = SubResource("CompressedTexture2D_hbd3v")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -1418,7 +1423,7 @@ sources/0 = SubResource("TileSetAtlasSource_71j4m")
 sources/1 = SubResource("TileSetAtlasSource_qfnet")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0juu"]
-texture = ExtResource("2_ijboq")
+texture = SubResource("CompressedTexture2D_bng1x")
 8:0/0 = 0
 9:0/0 = 0
 0:1/0 = 0
@@ -1792,12 +1797,12 @@ texture = ExtResource("2_ijboq")
 18:17/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.748413, 15.827568, -8.093643, 11.151241, -1.438858, 15.467854, -1.798584, 21.40319, -8.093643, 23.561497, -14.208832, 21.223331)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4mrxx"]
-texture = ExtResource("4_lasd6")
+texture = ExtResource("2_it6ff")
 1:0/size_in_atlas = Vector2i(2, 4)
 1:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7r4gi"]
-texture = ExtResource("3_8i37m")
+texture = SubResource("CompressedTexture2D_hbd3v")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -2122,7 +2127,7 @@ sources/1 = SubResource("TileSetAtlasSource_4mrxx")
 sources/2 = SubResource("TileSetAtlasSource_7r4gi")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i7141"]
-texture = ExtResource("2_ijboq")
+texture = SubResource("CompressedTexture2D_bng1x")
 18:17/size_in_atlas = Vector2i(2, 3)
 18:17/0 = 0
 18:17/0/y_sort_origin = 14
@@ -2135,7 +2140,7 @@ texture = ExtResource("2_ijboq")
 8:22/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e3hyu"]
-texture = ExtResource("3_8i37m")
+texture = SubResource("CompressedTexture2D_hbd3v")
 3:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -2460,15 +2465,6 @@ custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_i7141")
 sources/1 = SubResource("TileSetAtlasSource_e3hyu")
 
-[sub_resource type="Gradient" id="Gradient_4wyf3"]
-offsets = PackedFloat32Array(0, 0.18244803, 0.44110855)
-colors = PackedColorArray(1, 1, 1, 1, 0.823518, 0.72188103, 0.43133846, 1, 0, 0, 0, 0.9764706)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_k0juu"]
-gradient = SubResource("Gradient_4wyf3")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="Gradient" id="Gradient_71j4m"]
 colors = PackedColorArray(1, 1, 1, 0.3882353, 1, 1, 1, 0.4509804)
 
@@ -2488,7 +2484,7 @@ fill_to = Vector2(0.517094, 0)
 
 [node name="LevelBathroom" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_hk6ca")
+script = ExtResource("1_bng1x")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.18102583, 0.18102747, 0.20666206, 1)
@@ -2517,7 +2513,10 @@ tile_set = SubResource("TileSet_4mrxx")
 [node name="PointLight2D" type="PointLight2D" parent="Lamp"]
 position = Vector2(-64, -101)
 scale = Vector2(1.5, 1.5)
-texture = SubResource("GradientTexture2D_k0juu")
+color = Color(1, 0.8784314, 0.3882353, 1)
+energy = 0.5
+texture = ExtResource("3_bng1x")
+texture_scale = 0.4
 script = ExtResource("5_otne7")
 min_energy = 0.0
 max_energy = 1.0
@@ -2567,6 +2566,8 @@ metadata/_edit_lock_ = true
 z_index = 2
 
 [node name="Door_S" parent="Doors" instance=ExtResource("9_augiv")]
+locked = false
+dialogue_resource = null
 
 [node name="Spawn" parent="Doors/Door_S" index="0"]
 position = Vector2(0, 72)
@@ -2574,5 +2575,9 @@ position = Vector2(0, 72)
 [node name="CollisionShape2D" parent="Doors/Door_S" index="1"]
 position = Vector2(0, 96)
 metadata/_edit_lock_ = true
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AmbientPlayer" type="AudioStreamPlayer" parent="."]
 
 [editable path="Doors/Door_S"]
