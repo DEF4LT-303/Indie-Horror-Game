@@ -5,13 +5,15 @@ extends Node2D
 
 func _ready():
 	run_intro()
+	#NavigationManager.load_data_dictionary("res://data_library/apartment.json")
+	#NavigationManager.go_to_scene(0, "IntroSpawn", 1, 10)
 
 func run_intro():
 	TransitionScene.transition(3)
 	await TransitionScene.on_transition_finished
 	
 	# Window tap
-	var sfx_player = AudioManager.play_sfx("res://assets/audio/window_knock.mp3", -6)
+	var sfx_player = AudioManager.play_sfx("res://assets/audio/SFX/window_knock.mp3", -6)
 	if sfx_player:
 		await sfx_player.finished
 		await get_tree().create_timer(2.0).timeout

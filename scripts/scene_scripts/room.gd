@@ -131,7 +131,7 @@ func apply_state_lighting() -> void:
 		fade_to_dark_room(0, true)
 
 	else:
-		fade_to_normal()
+		fade_to_normal(0, true)
 		stop_flicker()
 
 # --------------------------

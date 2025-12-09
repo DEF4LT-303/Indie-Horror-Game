@@ -164,3 +164,11 @@ func set_current_room(room_name: String) -> void:
 		return
 	current_room = room_name
 	current_room_changed.emit(room_name)
+	
+func get_current_room_node() -> Node:
+	if current_room == "" or current_room == null:
+		return null
+
+	var root = get_tree().get_current_scene()
+	print(root.get_node_or_null(current_room))
+	return root.get_node_or_null(current_room)

@@ -145,8 +145,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
-radius = 13.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 5.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -178,8 +178,8 @@ collision_mask = 16
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder"]
-position = Vector2(0, -6)
-shape = SubResource("CircleShape2D_g2els")
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_qhqgy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 rotation = 0.1972222

@@ -8,7 +8,7 @@ static func get_cutscene(name: String) -> Array:
 		"bedroom_intro":
 			return [
 				{"type": "wait", "duration": 3.0},
-				{"type": "play_sound", "sound": "res://assets/audio/window_knock.mp3", "volume": -6},
+				{"type": "play_sound", "sound": "res://assets/audio/SFX/window_knock.mp3", "volume": -6},
 				{"type": "wait", "duration": 0.8},
 				{"type": "custom", "callback": "play_anim_with_dir", "args": ["left"]},
 				{"type": "wait", "duration": 1},

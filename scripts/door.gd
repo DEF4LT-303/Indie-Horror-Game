@@ -14,7 +14,7 @@ class_name Door
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		AudioManager.play_sfx("res://assets/audio/door_open.mp3", -6)
+		AudioManager.play_sfx("res://assets/audio/SFX/door_open.mp3", -6)
 		if self.locked:
 			DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
 			return
