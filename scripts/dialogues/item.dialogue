@@ -8,3 +8,16 @@ There's a {{item_name}} on the table. Pick it up?
 - Leave
 set GlobalState.player_can_move = true
 => END
+
+~ letter
+set GlobalState.player_can_move = false
+There's a {{item_name}} on the ground. Pick it up?
+- Pick up
+	set GlobalState.mark_item_collected(item_name)
+	
+	[speed=0.4]Why...
+	Why have you abandoned me...?
+
+- Leave
+set GlobalState.player_can_move = true
+=> END

@@ -9,7 +9,7 @@ class_name DialogueLabel extends RichTextLabel
 ## Emitted for each letter typed out.
 signal spoke(letter: String, letter_index: int, speed: float)
 
-## Emitted when the player skips the typing of dialogue.
+## Emitted when the Player skips the typing of dialogue.
 signal skipped_typing()
 
 ## Emitted when typing starts

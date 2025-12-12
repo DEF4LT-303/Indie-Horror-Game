@@ -3,8 +3,8 @@ class_name Room
 
 @export var room_id: int = 0
 
-@onready var player_packed_scene = preload("res://scenes/player.tscn")
-var player: Player = null
+@onready var player_packed_scene = preload("res://scenes/Player.tscn")
+var Player: Player = null
 
 # --------------------------
 # LIGHTING PRESETS (shared across all rooms)
@@ -43,24 +43,24 @@ func _ready() -> void:
 # PLAYER LOGIC
 # --------------------------
 func spawn_player():
-	if NavigationManager.player:
-		player = NavigationManager.player
-		if player.get_parent() != self:
-			add_child(player)
+	if NavigationManager.Player:
+		Player = NavigationManager.Player
+		if Player.get_parent() != self:
+			add_child(Player)
 	else:
-		player = player_packed_scene.instantiate()
-		NavigationManager.player = player
-		add_child(player)
+		Player = player_packed_scene.instantiate()
+		NavigationManager.Player = Player
+		add_child(Player)
 
 func spawn_player_at_tag(tag: String):
 	var door = find_door_by_name("Door_" + tag)
 	if door:
-		player.global_position = door.spawn.global_position
+		Player.global_position = door.spawn.global_position
 	else:
 		var marker = get_node_or_null("SpawnPoints/" + tag)
 		if marker:
 			spawn_player()
-			player.global_position = marker.global_position
+			Player.global_position = marker.global_position
 		else:
 			push_warning("Spawn tag not found as door or marker: " + tag)
 
@@ -68,9 +68,9 @@ func spawn_player_at_marker(marker_name: String, direction: String = ""):
 	var marker = get_node_or_null("SpawnPoints/" + marker_name)
 	if marker:
 		spawn_player()
-		player.global_position = marker.global_position
+		Player.global_position = marker.global_position
 		if direction != "":
-			player.set_direction(direction)
+			Player.set_direction(direction)
 	else:
 		push_warning("Spawn marker not found: " + marker_name)
 

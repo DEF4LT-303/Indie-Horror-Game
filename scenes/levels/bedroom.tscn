@@ -94,7 +94,7 @@ tile_set = ExtResource("2_2qq7b")
 metadata/_edit_lock_ = true
 
 [node name="Furniture" type="TileMapLayer" parent="TileMaps"]
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAASAP7/BAANAA0AAAASAP//BAANAA4AAAATAP7/BAAOAA0AAAATAP//BAAOAA4AAAAUAP7/BAAPAA0AAAAUAP//BAAPAA4AAAARAAEAEgAJABEAAAAUAAcABwAJAAUAABASAAkABwASAAYAAAAMAAEAAAAAAAAAAAARAAcABwAjAAsAAAATAAEAEAALAAYAAAATAAMAEAALAAgAAAAMAAIABwAUAA0AAAA=")
 tile_set = ExtResource("2_2qq7b")
@@ -200,6 +200,7 @@ position = Vector2(178.38623, -28.066582)
 polygon = PackedVector2Array(-34.38623, 156.06659, -34.38623, 188.06659, 13.61377, 188.06659, 13.61377, 204.06659, 45.61377, 204.06659, 45.61377, 188.06659, 157.61377, 188.06659, 157.61377, 156.06659, 157.61377, 108.06658, 157.61377, 60.06658, -2.3862305, 60.06658, -2.3862305, 156.06659, -26.38623, 156.06659, -31.38623, -22.933418, 176.61377, -30.933418, 176.61377, 215.06659, -58.38623, 215.06659, -51.38623, 152.06659)
 
 [node name="CollectibleItem" parent="." instance=ExtResource("6_wvg2w")]
+visible = false
 z_index = 3
 position = Vector2(233, 26)
 item_name = "knife"

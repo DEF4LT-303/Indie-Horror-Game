@@ -59,7 +59,7 @@ var rooms := {
 		"blackout": true,
 		"emergency": false,
 		"visited": false,
-		"bgm_override": "res://assets/audio/BGM/bedroom_nightmare.mp3",
+		"bgm_override": null,
 		"ambient_override": "res://assets/audio/BGM/indoor-rain-bg.mp3",
 	}
 }
@@ -71,6 +71,10 @@ var items := {
 	"knife": {
 		"collected": false,
 		"visible": false
+	},
+	"letter": {
+		"collected": false,
+		"visible": true
 	}
 }
 
@@ -170,5 +174,4 @@ func get_current_room_node() -> Node:
 		return null
 
 	var root = get_tree().get_current_scene()
-	print(root.get_node_or_null(current_room))
 	return root.get_node_or_null(current_room)

@@ -4,9 +4,9 @@ extends Node2D
 @export var dialogue_start: String = "start"
 
 func _ready():
-	#run_intro()
-	NavigationManager.load_data_dictionary("res://data_library/apartment.json")
-	NavigationManager.go_to_scene(0, "IntroSpawn", 1, 10)
+	run_intro()
+	#NavigationManager.load_data_dictionary("res://data_library/apartment.json")
+	#NavigationManager.go_to_scene(0, "IntroSpawn", 1, 10)
 
 func run_intro():
 	TransitionScene.transition(3)
