@@ -55,8 +55,8 @@ var rooms := {
 		"ambient_override": "res://assets/audio/BGM/indoor-rain-bg.mp3",
 	},
 	"LevelBathroom": {
-		"dark": true,
-		"blackout": false,
+		"dark": false,
+		"blackout": true,
 		"emergency": false,
 		"visited": false,
 		"bgm_override": "res://assets/audio/BGM/bedroom_nightmare.mp3",

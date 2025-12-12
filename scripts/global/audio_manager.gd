@@ -51,6 +51,13 @@ func _fade_out_and_stop(player: AudioStreamPlayer):
 		player.stream = null
 	)
 
+func play_bgm(path: String, volume_db: float = -20) -> void:
+	var stream: AudioStream = load(path)
+	if stream == null:
+		push_warning("Invalid BGM path: " + path)
+		return
+		
+	_crossfade(bgm_player, stream, volume_db)
 
 func _on_room_changed(changed_room_name: String):
 	if changed_room_name == current_room:

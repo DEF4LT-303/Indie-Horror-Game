@@ -8,11 +8,10 @@ func _ready():
 	AudioManager.play_room_audio(name)
 	play_cutscene()
 	
-	desktopScreen.visible = false
-	desktopScreenLight.visible = false
 	
 func _process(delta: float) -> void:
-	turn_on_desktop_light()
+	#turn_on_desktop_light()
+	pass
 
 func play_cutscene():
 	if name == "LevelBedroom" and !GlobalState.get_room_state(name, "cutscene1"):

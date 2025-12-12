@@ -106,7 +106,8 @@ tile_map_data = PackedByteArray("AAARAAAAEQAIAAMAAAARAAEAEQAIAAQAAAAUAAgAAwADAAU
 tile_set = ExtResource("2_2qq7b")
 
 [node name="PointLight2D" type="PointLight2D" parent="TileMaps/Decors"]
-position = Vector2(280, 13)
+position = Vector2(281, 13)
+rotation = -0.010683843
 color = Color(1, 0.8784314, 0.3882353, 1)
 energy = 0.5
 texture = ExtResource("5_v7lbh")
@@ -155,7 +156,7 @@ position = Vector2(1, -3)
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="IntroSpawn" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(278, 58)
+position = Vector2(302, 45)
 
 [node name="Overlays" type="Node2D" parent="."]
 
@@ -173,6 +174,7 @@ scale = Vector2(0.65624994, 0.26562518)
 texture = SubResource("GradientTexture2D_7lolw")
 
 [node name="Monitor" type="Node2D" parent="Overlays"]
+visible = false
 
 [node name="MonitorRedLight" type="PointLight2D" parent="Overlays/Monitor"]
 position = Vector2(195.5, 21)
@@ -180,6 +182,7 @@ scale = Vector2(0.35937485, 0.59375)
 color = Color(0.57256395, 0.00050752674, 0.0002778107, 1)
 energy = 2.86
 texture = SubResource("GradientTexture2D_l4ilk")
+script = ExtResource("4_wvg2w")
 
 [node name="MonitorRedScreen" type="Sprite2D" parent="Overlays/Monitor"]
 modulate = Color(0.40390328, 8.4228816e-07, 9.62615e-08, 1)
@@ -243,6 +246,7 @@ shape = SubResource("RectangleShape2D_l4ilk")
 
 [node name="Area2D" type="Area2D" parent="Interactables/Lamp"]
 position = Vector2(233, 26)
+rotation = -0.0014374391
 collision_layer = 16
 script = ExtResource("8_670e5")
 dialogue_resource = ExtResource("9_670e5")
@@ -254,6 +258,19 @@ position = Vector2(46, -7.75)
 shape = SubResource("RectangleShape2D_ijtrw")
 
 [node name="LightSwitch" parent="Interactables" instance=ExtResource("5_l4ilk")]
+
+[node name="Bed" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/Bed"]
+rotation = -9.0993606e-05
+collision_layer = 16
+script = ExtResource("8_670e5")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "Bed"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactables/Bed/Area2D"]
+z_index = 2
+polygon = PackedVector2Array(288.99637, 40.0263, 285.99637, 40.026024, 285.9937, 69.026024, 333.9937, 69.030396, 333.9948, 57.03039, 288.9949, 56.0263)
 
 [editable path="Doors/Door_W"]
 [editable path="Doors/Door_Hallway"]

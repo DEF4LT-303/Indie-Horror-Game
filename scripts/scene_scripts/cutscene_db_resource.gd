@@ -7,15 +7,15 @@ static func get_cutscene(name: String) -> Array:
 	match name:
 		"bedroom_intro":
 			return [
-				{"type": "wait", "duration": 3.0},
-				{"type": "play_sound", "sound": "res://assets/audio/SFX/window_knock.mp3", "volume": -6},
-				{"type": "wait", "duration": 0.8},
-				{"type": "custom", "callback": "play_anim_with_dir", "args": ["left"]},
-				{"type": "wait", "duration": 1},
-				{"type": "custom", "callback": "play_anim_with_dir", "args": ["right"]},
-				{"type": "wait", "duration": 1},
-				{"type": "custom", "callback": "play_anim_with_dir", "args": ["down"]},
-				{"type": "wait", "duration": 0.5},
+				#{"type": "wait", "duration": 3.0},
+				#{"type": "play_sound", "sound": "res://assets/audio/SFX/window_knock.mp3", "volume": -6},
+				#{"type": "wait", "duration": 0.8},
+				#{"type": "custom", "callback": "play_anim_with_dir", "args": ["left"]},
+				#{"type": "wait", "duration": 1},
+				#{"type": "custom", "callback": "play_anim_with_dir", "args": ["right"]},
+				#{"type": "wait", "duration": 1},
+				#{"type": "custom", "callback": "play_anim_with_dir", "args": ["down"]},
+				#{"type": "wait", "duration": 0.5},
 			]
 		"some_other_cutscene":
 			return [

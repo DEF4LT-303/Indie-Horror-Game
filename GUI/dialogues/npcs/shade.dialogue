@@ -2,13 +2,13 @@
 
 set GlobalState.player_can_move = false
 
-if GlobalState.is_npc_talked_to("boy") == false:
+if GlobalState.is_npc_talked_to("shade") == false:
 	Boy: Hey.
 	Boy: Fetch me the knife.
 	Boy: It's on the bedroom sidetable...
 	
 	set GlobalState.items["knife"]["visible"] = true
-	set GlobalState.npc_has_been_talked_to("boy")
+	set GlobalState.npc_has_been_talked_to("shade")
 
 else:
 	%3 Boy: Go on. Hurry up!

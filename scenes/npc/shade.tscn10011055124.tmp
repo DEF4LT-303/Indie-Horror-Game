@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://b03u5lqcdwa3t"]
+
+[ext_resource type="Script" uid="uid://coej40bkqctay" path="res://scripts/npc/shade.gd" id="1_67scv"]
+[ext_resource type="Texture2D" uid="uid://bnnsens3udcrl" path="res://assets/characters/Shade.png" id="2_3uwl2"]
+[ext_resource type="PackedScene" uid="uid://b25y3x2fdkaux" path="res://scenes/elements/actionable.tscn" id="3_3uwl2"]
+[ext_resource type="Resource" uid="uid://bom8krkhb31rb" path="res://GUI/dialogues/npcs/shade.dialogue" id="4_6fwus"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltlmr"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fwus"]
+atlas = ExtResource("2_3uwl2")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6f687"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fwus")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b051k"]
+radius = 16.666672
+
+[sub_resource type="Curve2D" id="Curve2D_qr2jv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, -47, -2, 0, 0, 0, 0, -76, -21, 0, 0, 0, 0, -69, -45, 0, 0, 0, 0, -42, -82, 0, 0, 0, 0, 51, -73, 0, 0, 0, 0, 152, -22, 0, 0, 0, 0, 123, -1, 0, 0, 0, 0, -1, 0)
+}
+point_count = 9
+
+[node name="Shade" type="CharacterBody2D"]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("1_67scv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_ltlmr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -17)
+sprite_frames = SubResource("SpriteFrames_6f687")
+animation = &"side"
+
+[node name="Actionable" parent="." instance=ExtResource("3_3uwl2")]
+dialogue_resource = ExtResource("4_6fwus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+shape = SubResource("CircleShape2D_b051k")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_qr2jv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-1, 0)
+rotation = -3.0981417

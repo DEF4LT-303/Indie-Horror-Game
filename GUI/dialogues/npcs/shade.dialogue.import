@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bom8krkhb31rb"
+path="res://.godot/imported/shade.dialogue-7c21d84455acec67c8d1a1eb62076b5d.tres"
+
+[deps]
+
+source_file="res://GUI/dialogues/npcs/shade.dialogue"
+dest_files=["res://.godot/imported/shade.dialogue-7c21d84455acec67c8d1a1eb62076b5d.tres"]
+
+[params]
+
+defaults=true
