@@ -10,3 +10,15 @@ Hei: Its faint glow is flickering.
 ~ Bed
 Hei: A cozy double bed. Though I sleep alone.
 => END
+
+~ DesktopChair
+Hei: A slightly uncomfortable chair. I keep adjusting it.
+=> END
+
+~ Sofa
+Hei: A soft, familiar sofa. The cushion sinks too easily.
+=> END
+
+~ SofaTable
+Hei: A round table. Something should be on it.
+=> END

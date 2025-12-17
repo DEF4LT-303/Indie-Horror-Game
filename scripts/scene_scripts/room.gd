@@ -1,10 +1,10 @@
-extends Node
+extends Node2D
 class_name Room
 
 @export var room_id: int = 0
 
-@onready var player_packed_scene = preload("res://scenes/Player.tscn")
-var Player: Player = null
+@onready var player_packed_scene = preload("res://scenes/player.tscn")
+@onready var Player = NavigationManager.Player
 
 # --------------------------
 # LIGHTING PRESETS (shared across all rooms)
@@ -19,6 +19,7 @@ const COLOR_BLACKOUT    := Color(0, 0, 0, 1)
 
 var flicker_tween: Tween = null
 
+	
 func _ready() -> void:
 	GlobalState.set_current_room(name)
 
@@ -99,7 +100,7 @@ func get_door_data(door_array: Array, door_name: String):
 			return d
 	return null
 
-func apply_door_data(door_node: Door, data):
+func apply_door_data(door_node, data):
 	door_node.destination_level_tag = data.Destination_Level_Tag
 	door_node.destination_door_tag = data.Destination_Door_Tag
 	door_node.spawn_direction = data.Spawn_Direction

@@ -4,6 +4,7 @@ extends Room
 @onready var desktopScreen: Sprite2D = $Overlays/Monitor/MonitorRedScreen
 
 func _ready():
+	#Room.hello()
 	super._ready()
 	AudioManager.play_room_audio(name)
 	play_cutscene()

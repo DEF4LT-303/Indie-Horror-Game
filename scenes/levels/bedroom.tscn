@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://csnorfhp2j6sp"]
+[gd_scene load_steps=31 format=4 uid="uid://csnorfhp2j6sp"]
 
 [ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/bedroom.gd" id="1_v7lbh"]
 [ext_resource type="TileSet" uid="uid://dy35wl27clvw1" path="res://assets/tilesets/interiors.tres" id="2_2qq7b"]
@@ -50,18 +50,63 @@ gradient = SubResource("Gradient_l4ilk")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4ilk"]
+size = Vector2(60.5, 23.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijtrw"]
+size = Vector2(18, 19.5)
+
+[sub_resource type="GDScript" id="GDScript_g88aa"]
+script/source = "extends Area2D
+
+signal action_requested
+
+@export var dialogue_resource: DialogueResource
+@export var dialogue_start: String = \"start\"
+
+func action():
+	action_requested.emit(dialogue_resource, dialogue_start)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbcou"]
+size = Vector2(33.998566, 21.73848)
+
+[sub_resource type="GDScript" id="GDScript_4tl26"]
+script/source = "extends Area2D
+
+signal action_requested
+
+@export var dialogue_resource: DialogueResource
+@export var dialogue_start: String = \"start\"
+
+func action():
+	action_requested.emit(dialogue_resource, dialogue_start)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5usj"]
+size = Vector2(33.998566, 18.869232)
+
+[sub_resource type="GDScript" id="GDScript_l4ilk"]
+script/source = "extends Area2D
+
+signal action_requested
+
+@export var dialogue_resource: DialogueResource
+@export var dialogue_start: String = \"start\"
+
+func action():
+	action_requested.emit(dialogue_resource, dialogue_start)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g88aa"]
+size = Vector2(18, 24.749985)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hbd3v"]
 shader = ExtResource("7_2qq7b")
 shader_parameter/shaking = true
 shader_parameter/amplitude = 0.5
 shader_parameter/noise_scale = 10.0
 shader_parameter/noise_speed = 3.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4ilk"]
-size = Vector2(60.5, 23.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijtrw"]
-size = Vector2(18, 19.5)
 
 [node name="LevelBedroom" type="Node2D"]
 y_sort_enabled = true
@@ -205,26 +250,6 @@ z_index = 3
 position = Vector2(233, 26)
 item_name = "knife"
 
-[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
-
-[node name="AmbientPlayer" type="AudioStreamPlayer" parent="."]
-
-[node name="DreamEffect" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="DreamEffect"]
-material = SubResource("ShaderMaterial_hbd3v")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -299.0
-offset_top = -217.0
-offset_right = -299.0
-offset_bottom = -217.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-
 [node name="Interactables" type="Node2D" parent="."]
 z_index = 1
 script = ExtResource("8_ijtrw")
@@ -258,6 +283,66 @@ z_index = 99
 position = Vector2(46, -7.75)
 shape = SubResource("RectangleShape2D_ijtrw")
 
+[node name="Sofa" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/Sofa"]
+position = Vector2(311, 106.00001)
+rotation = -0.0014374391
+collision_layer = 16
+script = SubResource("GDScript_g88aa")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "Sofa"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Sofa/Area2D"]
+z_index = 99
+position = Vector2(7.999237, -7.6293945e-06)
+shape = SubResource("RectangleShape2D_cbcou")
+
+[node name="Sofa2" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/Sofa2"]
+position = Vector2(276.00003, 149)
+rotation = -0.0014374391
+collision_layer = 16
+script = SubResource("GDScript_g88aa")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "Sofa"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Sofa2/Area2D"]
+z_index = 99
+position = Vector2(7.999237, -1.1192169)
+shape = SubResource("RectangleShape2D_cbcou")
+
+[node name="SofaTable" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/SofaTable"]
+position = Vector2(284, 119)
+rotation = -0.0014374391
+collision_layer = 16
+script = SubResource("GDScript_4tl26")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "SofaTable"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/SofaTable/Area2D"]
+z_index = 99
+position = Vector2(-3.0517578e-05, 1.4346237)
+shape = SubResource("RectangleShape2D_g5usj")
+
+[node name="DesktopChair" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/DesktopChair"]
+position = Vector2(202, 49)
+rotation = -0.0014374391
+collision_layer = 16
+script = SubResource("GDScript_l4ilk")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "DesktopChair"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/DesktopChair/Area2D"]
+z_index = 99
+position = Vector2(-1.5258789e-05, 2.6249847)
+shape = SubResource("RectangleShape2D_g88aa")
+
 [node name="LightSwitch" parent="Interactables" instance=ExtResource("5_l4ilk")]
 
 [node name="Bed" type="Node" parent="Interactables"]
@@ -272,6 +357,26 @@ dialogue_start = "Bed"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactables/Bed/Area2D"]
 z_index = 2
 polygon = PackedVector2Array(288.99637, 40.0263, 285.99637, 40.026024, 285.9937, 69.026024, 333.9937, 69.030396, 333.9948, 57.03039, 288.9949, 56.0263)
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AmbientPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="DreamEffect" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="DreamEffect"]
+material = SubResource("ShaderMaterial_hbd3v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -299.0
+offset_top = -217.0
+offset_right = -299.0
+offset_bottom = -217.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
 
 [editable path="Doors/Door_W"]
 [editable path="Doors/Door_Hallway"]
