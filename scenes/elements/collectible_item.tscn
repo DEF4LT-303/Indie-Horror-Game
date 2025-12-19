@@ -34,7 +34,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hqcm"]
-radius = 14.0
+radius = 6.0827627
 
 [node name="CollectibleItem" type="Node2D"]
 script = ExtResource("1_2t1da")
@@ -46,7 +46,7 @@ animation = &"collectible_item"
 frame_progress = 0.36388752
 
 [node name="Actionable" type="Area2D" parent="."]
-collision_layer = 16
+collision_layer = 48
 script = ExtResource("2_vdfb2")
 dialogue_resource = ExtResource("4_1pelc")
 dialogue_start = "knife"

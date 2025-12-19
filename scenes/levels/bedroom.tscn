@@ -1,12 +1,13 @@
-[gd_scene load_steps=31 format=4 uid="uid://csnorfhp2j6sp"]
+[gd_scene load_steps=32 format=4 uid="uid://csnorfhp2j6sp"]
 
 [ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/bedroom.gd" id="1_v7lbh"]
 [ext_resource type="TileSet" uid="uid://dy35wl27clvw1" path="res://assets/tilesets/interiors.tres" id="2_2qq7b"]
 [ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/point_light_2d.gd" id="4_wvg2w"]
 [ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="5_670e5"]
+[ext_resource type="Texture2D" uid="uid://cury7odg483by" path="res://assets/characters/Shade_Shadow.png" id="5_g88aa"]
 [ext_resource type="PackedScene" uid="uid://5gol2ikenpcp" path="res://scenes/elements/light_switch.tscn" id="5_l4ilk"]
 [ext_resource type="Texture2D" uid="uid://bxgogodldgarf" path="res://assets/particles/light.png" id="5_v7lbh"]
-[ext_resource type="PackedScene" uid="uid://b8ift1lkw0enp" path="res://scenes/collectible_item.tscn" id="6_wvg2w"]
+[ext_resource type="PackedScene" uid="uid://b8ift1lkw0enp" path="res://scenes/elements/collectible_item.tscn" id="6_wvg2w"]
 [ext_resource type="Shader" uid="uid://0rl0u1cstp5m" path="res://scripts/scene_scripts/dream.gdshader" id="7_2qq7b"]
 [ext_resource type="Script" uid="uid://dxqpy80tl5acn" path="res://scripts/dialogues/actionable.gd" id="8_670e5"]
 [ext_resource type="Script" uid="uid://7fuvsyayovh6" path="res://scripts/elements/interactables.gd" id="8_ijtrw"]
@@ -147,7 +148,7 @@ tile_set = ExtResource("2_2qq7b")
 [node name="Decors" type="TileMapLayer" parent="TileMaps"]
 z_index = 2
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAARAAAAEQAIAAMAAAARAAEAEQAIAAQAAAAUAAgAAwADAAUAAAAUAAkAAwADAAYAAAATAAkADgALABcAAAAMAP7/DgAUABYAAAANAP7/DgAVABYAAAAMAP//DgAUABcAAAANAP//DgAVABcAAAALAP//DgATABcAAAAOAP7/DgASABcAAAAMAP3/AwABAAgAAAA=")
+tile_map_data = PackedByteArray("AAARAAAAEQAIAAMAAAARAAEAEQAIAAQAAAAUAAgAAwADAAUAAAAUAAkAAwADAAYAAAATAAkADgALABcAAAAMAP7/DgAUABYAAAANAP7/DgAVABYAAAAMAP//DgAUABcAAAANAP//DgAVABcAAAALAP//DgATABcAAAAOAP7/DgASABcAAAAMAP3/AwABAAgAAAASAAAAEQACAAQAAAATAAAAEQACAAQAAAA=")
 tile_set = ExtResource("2_2qq7b")
 
 [node name="PointLight2D" type="PointLight2D" parent="TileMaps/Decors"]
@@ -174,6 +175,12 @@ visible = false
 position = Vector2(195.5, 8.5)
 scale = Vector2(0.35937497, 0.20312499)
 texture = SubResource("GradientTexture2D_670e5")
+
+[node name="ShadeShadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.078431375)
+z_index = 3
+position = Vector2(300, -14)
+texture = ExtResource("5_g88aa")
 
 [node name="Doors" type="Node2D" parent="."]
 

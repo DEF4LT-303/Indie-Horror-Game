@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var actionable_finder: Area2D = $Direction/ActionableFinder
+@onready var actionable_finder_ground: Area2D = $Direction/ActionableFinderGround
 @onready var light: PointLight2D = $PointLight2D
 
 @export var speed = 100
@@ -42,12 +43,19 @@ func _on_current_room_changed(room_name: String) -> void:
 	_update_light()
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("interact"):
-		var actionables = actionable_finder.get_overlapping_areas()
+	if not Input.is_action_just_pressed("interact"):
+		return
 
-		if actionables.size() > 0:
-			actionables[0].action()
-			return
+	# Try directional 
+	var actionables = actionable_finder.get_overlapping_areas()
+	if actionables.size() > 0:
+		actionables[0].action()
+		return
+
+	# Fallback to ground items
+	var ground_actionables = actionable_finder_ground.get_overlapping_areas()
+	if ground_actionables.size() > 0:
+		ground_actionables[0].action()
 
 func _on_spawn(position: Vector2, direction: String) -> void:
 	global_position = position

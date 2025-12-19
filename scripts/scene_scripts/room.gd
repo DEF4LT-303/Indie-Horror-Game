@@ -16,6 +16,7 @@ const COLOR_BLACKOUT    := Color(0, 0, 0, 1)
 
 @onready var modulate_node: CanvasModulate = $CanvasModulate
 @onready var dream_effect: CanvasLayer = $DreamEffect if has_node("DreamEffect") else null
+@onready var glitch_effect: CanvasLayer = $GlitchLayer if has_node("GlitchLayer") else null
 
 var flicker_tween: Tween = null
 
@@ -118,11 +119,14 @@ func apply_state_lighting() -> void:
 
 	if dream_effect:
 		dream_effect.visible = GlobalState.get_room_state(room_name, "dream")
+		
+	if glitch_effect:
+		glitch_effect.visible = GlobalState.get_room_state(room_name, "glitch")
 
 	if GlobalState.events.get("emergency_mode", false) \
 			or GlobalState.get_room_state(room_name, "emergency"):
 		fade_to_emergency(0, true)
-		start_emergency_flicker()
+		#start_emergency_flicker()
 
 	elif GlobalState.events.get("blackout", false) \
 			or GlobalState.get_room_state(room_name, "blackout"):
