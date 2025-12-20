@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://bu6621r12ojsv" path="res://scripts/scene_scripts/bathroom.gd" id="1_bng1x"]
 [ext_resource type="Shader" uid="uid://b0m3i0uymjgt2" path="res://scripts/scene_scripts/shaders/glitch_effect.gdshader" id="2_8i37m"]
 [ext_resource type="TileSet" uid="uid://g04x0utign2c" path="res://assets/tilesets/walls_floors.tres" id="2_dps2f"]
-[ext_resource type="Shader" uid="uid://0rl0u1cstp5m" path="res://scripts/scene_scripts/dream.gdshader" id="2_ijboq"]
+[ext_resource type="Shader" uid="uid://0rl0u1cstp5m" path="res://scripts/scene_scripts/shaders/dream.gdshader" id="2_ijboq"]
 [ext_resource type="TileSet" uid="uid://7daasplf1r0g" path="res://assets/tilesets/bathroom.tres" id="3_it6ff"]
 [ext_resource type="Texture2D" uid="uid://bxgogodldgarf" path="res://assets/particles/light.png" id="4_bng1x"]
-[ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/point_light_2d.gd" id="5_yuslf"]
+[ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/elements/point_light_2d.gd" id="5_yuslf"]
 [ext_resource type="PackedScene" uid="uid://b03u5lqcdwa3t" path="res://scenes/npc/shade.tscn" id="6_30bfc"]
 [ext_resource type="PackedScene" uid="uid://b8ift1lkw0enp" path="res://scenes/elements/collectible_item.tscn" id="8_hk6ca"]
 [ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="9_augiv"]
@@ -126,8 +126,6 @@ z_index = 2
 position = Vector2(12, 84)
 
 [node name="Door_Bedroom" parent="Doors" instance=ExtResource("9_augiv")]
-locked = false
-dialogue_resource = null
 
 [node name="Spawn" parent="Doors/Door_Bedroom" index="0"]
 position = Vector2(264, 192)
@@ -136,6 +134,7 @@ position = Vector2(264, 192)
 position = Vector2(295, 192)
 
 [node name="Sprite2D" type="Sprite2D" parent="Doors/Door_Bedroom"]
+z_index = 4
 position = Vector2(280.5, 160.5)
 scale = Vector2(0.73437494, 1.6718749)
 texture = SubResource("GradientTexture2D_e3hyu")

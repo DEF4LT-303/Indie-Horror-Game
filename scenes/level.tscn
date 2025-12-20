@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d4i76nqavvy1a"]
 
-[ext_resource type="Script" uid="uid://dbvlhhh0uqccb" path="res://scripts/level.gd" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://dbvlhhh0uqccb" path="res://scripts/scene_scripts/level.gd" id="1_2q6dc"]
 [ext_resource type="Resource" uid="uid://cp323gd7j2x07" path="res://scripts/dialogues/intro_cutscene.dialogue" id="2_w7c3h"]
 [ext_resource type="Script" uid="uid://10844mj3do20" path="res://scripts/scene_scripts/cutscene_controller.gd" id="3_w8frs"]
 

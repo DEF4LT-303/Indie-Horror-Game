@@ -16,6 +16,11 @@ static func get_cutscene(name: String) -> Array:
 				{"type": "wait", "duration": 1},
 				{"type": "custom", "callback": "play_anim_with_dir", "args": ["down"]},
 				{"type": "wait", "duration": 0.5},
+				{
+					"type": "play_dialogue",
+					"dialogue": preload("res://scripts/dialogues/bedroom_intro.dialogue"),
+					"start": "start"
+				},
 			]
 		"some_other_cutscene":
 			return [

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7h05rxxuwckn"]
 
-[ext_resource type="Script" uid="uid://cwfqdg2687rdj" path="res://scripts/door.gd" id="1_2xcpy"]
+[ext_resource type="Script" uid="uid://cwfqdg2687rdj" path="res://scripts/elements/door.gd" id="1_2xcpy"]
 [ext_resource type="Resource" uid="uid://cj5v76i62d42b" path="res://scripts/dialogues/locked_door.dialogue" id="2_e708x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xcpy"]

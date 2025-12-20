@@ -133,6 +133,8 @@ func _execute_cutscene(actions: Array) -> void:
 				_action_play_sound(action)
 			"set_event":
 				_action_set_event(action)
+			"play_dialogue":
+				await _action_play_dialogue(action)
 			"custom":
 				await _action_custom(action)
 			_:
@@ -272,6 +274,18 @@ func _action_set_event(action: Dictionary) -> void:
 		return
 	
 	GlobalState.events[event_name] = value
+
+## Action: Play dialogue
+func _action_play_dialogue(action: Dictionary) -> void:
+	var dialogue_res = action.get("dialogue", null)
+	var start_node = action.get("start", "start")
+
+	if not dialogue_res:
+		push_warning("No dialogue provided for play_dialogue action")
+		return
+
+	DialogueManager.show_dialogue_balloon(dialogue_res, start_node)
+	await DialogueManager.dialogue_ended
 
 ## Action: Custom callback function
 func _action_custom(action: Dictionary) -> void:
