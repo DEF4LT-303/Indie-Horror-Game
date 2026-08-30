@@ -8,7 +8,7 @@ var id: String
 ## The internal type of this dialogue object, always set to [code]TYPE_RESPONSE[/code].
 var type: String = DMConstants.TYPE_RESPONSE
 
-## The next line ID to use if this response is selected by the player.
+## The next line ID to use if this response is selected by the Player.
 var next_id: String = ""
 
 ## [code]true[/code] if the condition of this line was met.

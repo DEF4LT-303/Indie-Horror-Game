@@ -1,29 +1,18 @@
-[gd_scene load_steps=24 format=4 uid="uid://csnorfhp2j6sp"]
+[gd_scene load_steps=30 format=4 uid="uid://csnorfhp2j6sp"]
 
 [ext_resource type="Script" uid="uid://6kw0qg7qiho2" path="res://scripts/scene_scripts/bedroom.gd" id="1_v7lbh"]
 [ext_resource type="TileSet" uid="uid://dy35wl27clvw1" path="res://assets/tilesets/interiors.tres" id="2_2qq7b"]
-[ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/point_light_2d.gd" id="4_wvg2w"]
+[ext_resource type="Script" uid="uid://sk3lfaehq6fi" path="res://scripts/elements/point_light_2d.gd" id="4_wvg2w"]
 [ext_resource type="PackedScene" uid="uid://7h05rxxuwckn" path="res://scenes/elements/door.tscn" id="5_670e5"]
+[ext_resource type="Texture2D" uid="uid://cury7odg483by" path="res://assets/characters/Shade_Shadow.png" id="5_g88aa"]
+[ext_resource type="PackedScene" uid="uid://5gol2ikenpcp" path="res://scenes/elements/light_switch.tscn" id="5_l4ilk"]
 [ext_resource type="Texture2D" uid="uid://bxgogodldgarf" path="res://assets/particles/light.png" id="5_v7lbh"]
-[ext_resource type="PackedScene" uid="uid://b8ift1lkw0enp" path="res://scenes/collectible_item.tscn" id="6_wvg2w"]
-[ext_resource type="Shader" uid="uid://0rl0u1cstp5m" path="res://scripts/scene_scripts/dream.gdshader" id="7_2qq7b"]
+[ext_resource type="PackedScene" uid="uid://b8ift1lkw0enp" path="res://scenes/elements/collectible_item.tscn" id="6_wvg2w"]
+[ext_resource type="Shader" uid="uid://0rl0u1cstp5m" path="res://scripts/scene_scripts/shaders/dream.gdshader" id="7_2qq7b"]
 [ext_resource type="Script" uid="uid://dxqpy80tl5acn" path="res://scripts/dialogues/actionable.gd" id="8_670e5"]
 [ext_resource type="Script" uid="uid://7fuvsyayovh6" path="res://scripts/elements/interactables.gd" id="8_ijtrw"]
 [ext_resource type="Resource" uid="uid://dk68s2lskiuxx" path="res://scripts/dialogues/interactables.dialogue" id="9_670e5"]
-
-[sub_resource type="Gradient" id="Gradient_wvg2w"]
-colors = PackedColorArray(0, 0, 0, 1, 0.9039432, 0.012478812, 5.7756904e-07, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2qq7b"]
-gradient = SubResource("Gradient_wvg2w")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="Gradient" id="Gradient_hbd3v"]
-colors = PackedColorArray(1, 0.10980392, 0.08235294, 1, 1, 0.10980392, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_670e5"]
-gradient = SubResource("Gradient_hbd3v")
+[ext_resource type="Shader" uid="uid://b0m3i0uymjgt2" path="res://scripts/scene_scripts/shaders/glitch_effect.gdshader" id="13_cbcou"]
 
 [sub_resource type="Gradient" id="Gradient_w7kh3"]
 offsets = PackedFloat32Array(0.14318706, 1)
@@ -49,6 +38,57 @@ gradient = SubResource("Gradient_l4ilk")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4ilk"]
+size = Vector2(60.5, 23.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijtrw"]
+size = Vector2(18, 19.5)
+
+[sub_resource type="GDScript" id="GDScript_g88aa"]
+script/source = "extends Area2D
+
+signal action_requested
+
+@export var dialogue_resource: DialogueResource
+@export var dialogue_start: String = \"start\"
+
+func action():
+	action_requested.emit(dialogue_resource, dialogue_start)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbcou"]
+size = Vector2(33.998566, 21.73848)
+
+[sub_resource type="GDScript" id="GDScript_4tl26"]
+script/source = "extends Area2D
+
+signal action_requested
+
+@export var dialogue_resource: DialogueResource
+@export var dialogue_start: String = \"start\"
+
+func action():
+	action_requested.emit(dialogue_resource, dialogue_start)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5usj"]
+size = Vector2(33.998566, 18.869232)
+
+[sub_resource type="GDScript" id="GDScript_l4ilk"]
+script/source = "extends Area2D
+
+signal action_requested
+
+@export var dialogue_resource: DialogueResource
+@export var dialogue_start: String = \"start\"
+
+func action():
+	action_requested.emit(dialogue_resource, dialogue_start)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g88aa"]
+size = Vector2(18, 24.749985)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hbd3v"]
 shader = ExtResource("7_2qq7b")
 shader_parameter/shaking = true
@@ -56,49 +96,47 @@ shader_parameter/amplitude = 0.5
 shader_parameter/noise_scale = 10.0
 shader_parameter/noise_speed = 3.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4ilk"]
-size = Vector2(60.5, 23.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijtrw"]
-size = Vector2(18, 19.5)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4tl26"]
+shader = ExtResource("13_cbcou")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 10.0
+shader_parameter/shake_block_size = 4.0
+shader_parameter/shake_color_rate = 0.01
 
 [node name="LevelBedroom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_v7lbh")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-130, 65)
 
 [node name="TileMaps" type="Node2D" parent="."]
 y_sort_enabled = true
+position = Vector2(-130, 65)
 
 [node name="Floor" type="TileMapLayer" parent="TileMaps"]
 tile_map_data = PackedByteArray("AAALAAIABQABAAUAAAALAAMABQABAAYAAAAMAAMABQADAAYAAAALAAQABQABAAcAAAAMAAQABQADAAYAAAALAAUABQABAAYAAAAMAAUABQADAAYAAAALAAYABQABAAcAAAAMAAYABQADAAYAAAALAAcABQABAAYAAAAMAAcABQADAAYAAAALAAgABQACAAYAAAAMAAgABQADAAYAAAALAAkABQACAAYAAAAMAAkABQADAAYAAAANAAIABQADAAUAAAAOAAIABQACAAUAAAANAAMABQACAAYAAAAOAAMABQADAAYAAAANAAQABQACAAYAAAAOAAQABQADAAYAAAANAAUABQACAAYAAAAOAAUABQADAAYAAAANAAYABQACAAYAAAAOAAYABQADAAYAAAANAAcABQACAAYAAAAOAAcABQADAAYAAAANAAgABQACAAYAAAAOAAgABQADAAYAAAANAAkABQACAAYAAAAOAAkABQADAAYAAAAPAAIABQACAAUAAAAQAAIABQACAAUAAAAPAAMABQACAAYAAAAQAAMABQADAAYAAAAPAAQABQACAAYAAAAQAAQABQADAAYAAAAPAAUABQACAAYAAAAQAAUABQADAAYAAAAPAAYABQACAAYAAAAQAAYABQADAAYAAAAPAAcABQACAAYAAAAQAAcABQADAAYAAAAPAAgABQACAAYAAAAQAAgABQADAAYAAAAPAAkABQACAAYAAAAQAAkABQADAAYAAAARAAIABQACAAUAAAASAAIABQACAAUAAAARAAMABQACAAYAAAASAAMABQADAAYAAAARAAQABQACAAYAAAASAAQABQADAAYAAAARAAUABQACAAYAAAASAAUABQADAAYAAAARAAYABQACAAYAAAASAAYABQADAAYAAAARAAcABQACAAYAAAASAAcABQADAAYAAAARAAgABQACAAYAAAASAAgABQADAAYAAAARAAkABQACAAYAAAASAAkABQADAAYAAAATAAIABQADAAUAAAAUAAIABQAEAAUAAAATAAMABQACAAYAAAAUAAMABQAEAAcAAAATAAQABQACAAYAAAAUAAQABQAEAAYAAAATAAUABQACAAYAAAAUAAUABQAEAAcAAAATAAYABQACAAYAAAAUAAYABQAEAAYAAAATAAcABQACAAYAAAAUAAcABQAEAAcAAAATAAgABQACAAYAAAAUAAgABQAEAAYAAAATAAkABQACAAYAAAAUAAkABQAEAAcAAAAJAAgABQACAAYAAAAKAAgABQADAAYAAAAJAAkABQACAAYAAAAKAAkABQADAAYAAAAMAAoABQACAAYAAAANAAoABQADAAYAAAAMAAIABQACAAUAAAA=")
 tile_set = ExtResource("2_2qq7b")
-metadata/_edit_lock_ = true
 
 [node name="Carpets" type="TileMapLayer" parent="TileMaps/Floor"]
+position = Vector2(-2, -2)
+tile_map_data = PackedByteArray("AAARAAIABwAdABYAAAARAAMABwAdABcAAAASAAIABwAeABYAAAASAAMABwAeABcAAAAQAAcAEQABAAgAAAAQAAgAEQABAAkAAAAQAAkAEQABAAoAAAARAAcAEQACAAgAAAARAAgAEQACAAkAAAARAAkAEQACAAoAAAASAAcAEQADAAgAAAASAAgAEQADAAkAAAASAAkAEQADAAoAAAATAAcAEQAEAAgAAAATAAgAEQAEAAkAAAATAAkAEQAEAAoAAAA=")
 tile_set = ExtResource("2_2qq7b")
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps"]
 z_index = 1
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAALAAAAEQABAAQAAAALAAEAEQABAAQAAAAMAAAAEQACAAQAAAAMAAEAEQACAAQAAAANAAAAEQADAAQAAAANAAEAEQADAAQAAAAOAAAAEQACAAQAAAAOAAEAEQACAAQAAAAPAAAAEQADAAQAAAAPAAEAEQADAAQAAAAQAAAAEQACAAQAAAAQAAEAEQACAAQAAAARAAAAEQADAAQAAAARAAEAEQADAAQAAAASAAAAEQACAAQAAAASAAEAEQACAAQAAAATAAAAEQADAAQAAAATAAEAEQADAAQAAAAUAAAAEQAEAAQAAAAUAAEAEQAEAAQAAAALAP//EQABAAQAAAAMAP//EQACAAQAAAANAP//EQADAAQAAAAOAP//EQACAAQAAAAPAP//EQADAAQAAAAQAP//EQACAAQAAAARAP7/EQADAAQAAAARAP//EQADAAQAAAASAP7/EQACAAQAAAASAP//EQACAAQAAAATAP7/EQADAAQAAAATAP//EQADAAQAAAAUAP7/EQAEAAQAAAAUAP//EQAEAAQAAAAQAP7/EQACAAQAAAALAP7/EQABAAQAAAAMAP7/EQACAAQAAAANAP7/EQADAAQAAAAOAP7/EQACAAQAAAAPAP7/EQADAAQAAAALAP3/EQABAAMAAAAUAP3/EQAEAAMAAAAMAP3/EQACAAMAAAANAP3/EQADAAMAAAAOAP3/EQACAAMAAAAPAP3/EQADAAMAAAAQAP3/EQACAAMAAAARAP3/EQADAAMAAAASAP3/EQADAAMAAAATAP3/EQADAAMAAAAKAAMADwAKAAQAAGAOAAoADwAKAAQAAAALAAoADwAKAAQAADA=")
+tile_map_data = PackedByteArray("AAALAAAAEQABAAQAAAALAAEAEQABAAQAAAAMAAAAEQACAAQAAAAMAAEAEQACAAQAAAANAAAAEQADAAQAAAANAAEAEQADAAQAAAAOAAAAEQACAAQAAAAOAAEAEQACAAQAAAAPAAAAEQADAAQAAAAPAAEAEQADAAQAAAAQAAAAEQACAAQAAAAQAAEAEQACAAQAAAARAAAAEQADAAQAAAARAAEAEQADAAQAAAASAAAAEQACAAQAAAASAAEAEQACAAQAAAATAAAAEQADAAQAAAATAAEAEQADAAQAAAAUAAAAEQAEAAQAAAAUAAEAEQAEAAQAAAALAP//EQABAAQAAAAMAP//EQACAAQAAAANAP//EQADAAQAAAAOAP//EQACAAQAAAAPAP//EQADAAQAAAAQAP//EQACAAQAAAARAP7/EQADAAQAAAARAP//EQADAAQAAAASAP7/EQACAAQAAAASAP//EQACAAQAAAATAP7/EQADAAQAAAATAP//EQADAAQAAAAUAP7/EQAEAAQAAAAUAP//EQAEAAQAAAAQAP7/EQACAAQAAAALAP7/EQABAAQAAAAMAP7/EQACAAQAAAANAP7/EQADAAQAAAAOAP7/EQACAAQAAAAPAP7/EQADAAQAAAALAP3/EQABAAMAAAAUAP3/EQAEAAMAAAAMAP3/EQACAAMAAAANAP3/EQADAAMAAAAOAP3/EQACAAMAAAAPAP3/EQADAAMAAAAQAP3/EQACAAMAAAARAP3/EQADAAMAAAASAP3/EQADAAMAAAATAP3/EQADAAMAAAAKAAMADwADAAwAAFAOAAoADwAGAAwAAAALAAoADwADAAwAAAA=")
 tile_set = ExtResource("2_2qq7b")
-metadata/_edit_lock_ = true
 
 [node name="WallBorder" type="TileMapLayer" parent="TileMaps/Wall"]
 tile_map_data = PackedByteArray("AAAJAAQAEQADAAMAAAAJAAUAEQADAAQAAAAJAAYABQADAAMAAAAJAAcABQADAAQAAAAKAAQAEQAEAAMAAAAKAAUAEQAEAAQAAAAKAAYABQAEAAMAAAAKAAcABQAEAAQAAAAKAPz/DwABAAMAAAAKAP3/DwABAAQAAAALAPz/DwACAAMAAAAUAPz/DwABAAQAAFAVAP3/DwACAAMAAFAVAPz/DwABAAMAAFAUAAoADwACAAMAADAVAAkADwABAAQAADAVAAoADwABAAMAADAVAP7/DwAKAAQAAAAVAP//DwAKAAQAAAAVAAAADwAKAAQAAAAVAAEADwAKAAQAAAAVAAIADwAKAAQAAAAVAAMADwAKAAQAAAAVAAQADwAKAAQAAAAVAAUADwAKAAQAAAAVAAYADwAKAAQAAAAVAAcADwAKAAQAAAAVAAgADwAKAAQAAAAKAP7/DwAKAAQAADAKAP//DwAKAAQAADAKAAAADwAKAAQAADAKAAEADwAKAAQAADAKAAIADwAKAAQAADATAAoADwAKAAQAAFASAAoADwAKAAQAAFARAAoADwAKAAQAAFAQAAoADwAKAAQAAFAPAAoADwAKAAQAAFAOAAoADwAKAAQAAFALAAoADwAKAAQAAFAKAAoADwAKAAQAAFAJAAoADwAKAAQAAFAJAAMADwAKAAQAAGAKAAMADwAKAAQAADAMAPz/DwAKAAQAAGANAPz/DwAKAAQAAGAOAPz/DwAKAAQAAGAPAPz/DwAKAAQAAGAQAPz/DwAKAAQAAGARAPz/DwAKAAQAAGASAPz/DwAKAAQAAGATAPz/DwAKAAQAAGA=")
 tile_set = ExtResource("2_2qq7b")
 metadata/_edit_lock_ = true
 
-[node name="WallBorderEdges" type="TileMapLayer" parent="TileMaps/Wall"]
-z_index = 1
-tile_map_data = PackedByteArray("AAAKAAMADwADAAEAAAAOAAoADwAJAAwAAAALAAoADwADAAwAAAA=")
-tile_set = ExtResource("2_2qq7b")
-metadata/_edit_lock_ = true
-
 [node name="Furniture" type="TileMapLayer" parent="TileMaps"]
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAASAP7/BAANAA0AAAASAP//BAANAA4AAAATAP7/BAAOAA0AAAATAP//BAAOAA4AAAAUAP7/BAAPAA0AAAAUAP//BAAPAA4AAAARAAEAEgAJABEAAAAUAAcABwAJAAUAABASAAkABwASAAYAAAAMAAEAAAAAAAAAAAARAAcABwAjAAsAAAATAAEAEAALAAYAAAATAAMAEAALAAgAAAAMAAIABwAUAA0AAAA=")
 tile_set = ExtResource("2_2qq7b")
@@ -106,11 +144,12 @@ tile_set = ExtResource("2_2qq7b")
 [node name="Decors" type="TileMapLayer" parent="TileMaps"]
 z_index = 2
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAARAAAAEQAIAAMAAAARAAEAEQAIAAQAAAAUAAgAAwADAAUAAAAUAAkAAwADAAYAAAATAAkADgALABcAAAAMAP7/DgAUABYAAAANAP7/DgAVABYAAAAMAP//DgAUABcAAAANAP//DgAVABcAAAALAP//DgATABcAAAAOAP7/DgASABcAAAAMAP3/AwABAAgAAAA=")
+tile_map_data = PackedByteArray("AAARAAAAEQAIAAMAAAARAAEAEQAIAAQAAAAUAAgAAwADAAUAAAAUAAkAAwADAAYAAAATAAkADgALABcAAAAMAP7/DgAUABYAAAANAP7/DgAVABYAAAAMAP//DgAUABcAAAANAP//DgAVABcAAAALAP//DgATABcAAAAOAP7/DgASABcAAAAMAP3/AwABAAgAAAASAAAAEQACAAQAAAATAAAAEQACAAQAAAA=")
 tile_set = ExtResource("2_2qq7b")
 
 [node name="PointLight2D" type="PointLight2D" parent="TileMaps/Decors"]
-position = Vector2(280, 13)
+position = Vector2(281, 13)
+rotation = -0.010683843
 color = Color(1, 0.8784314, 0.3882353, 1)
 energy = 0.5
 texture = ExtResource("5_v7lbh")
@@ -121,19 +160,14 @@ flicker_chance = 0.08
 flicker_intensity = 3.0
 recovery_speed = 30.0
 
-[node name="Screen" type="PointLight2D" parent="TileMaps/Decors"]
-visible = false
-position = Vector2(195.5, 23)
-scale = Vector2(0.35937506, 0.65625)
-texture = SubResource("GradientTexture2D_2qq7b")
-
-[node name="Sprite2D" type="Sprite2D" parent="TileMaps/Decors"]
-visible = false
-position = Vector2(195.5, 8.5)
-scale = Vector2(0.35937497, 0.20312499)
-texture = SubResource("GradientTexture2D_670e5")
+[node name="ShadeShadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.078431375)
+z_index = 3
+position = Vector2(170, 51)
+texture = ExtResource("5_g88aa")
 
 [node name="Doors" type="Node2D" parent="."]
+position = Vector2(-130, 65)
 
 [node name="Door_W" parent="Doors" instance=ExtResource("5_670e5")]
 position = Vector2(155, 147)
@@ -144,7 +178,7 @@ dialogue_resource = null
 position = Vector2(29, -3)
 
 [node name="CollisionShape2D" parent="Doors/Door_W" index="1"]
-position = Vector2(-3, -3)
+position = Vector2(-7.5, -3)
 
 [node name="Door_Hallway" parent="Doors" instance=ExtResource("5_670e5")]
 position = Vector2(211, 176)
@@ -157,11 +191,14 @@ position = Vector2(29, -3)
 position = Vector2(1, -3)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(-130, 65)
 
 [node name="IntroSpawn" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(278, 58)
+position = Vector2(302, 45)
 
 [node name="Overlays" type="Node2D" parent="."]
+z_index = 4
+position = Vector2(-130, 65)
 
 [node name="DoorShadowW" type="Sprite2D" parent="Overlays"]
 z_index = 2
@@ -184,6 +221,7 @@ scale = Vector2(0.35937485, 0.59375)
 color = Color(0.57256395, 0.00050752674, 0.0002778107, 1)
 energy = 2.86
 texture = SubResource("GradientTexture2D_l4ilk")
+script = ExtResource("4_wvg2w")
 
 [node name="MonitorRedScreen" type="Sprite2D" parent="Overlays/Monitor"]
 modulate = Color(0.40390328, 8.4228816e-07, 9.62615e-08, 1)
@@ -194,7 +232,7 @@ texture = SubResource("GradientTexture2D_g88aa")
 
 [node name="BoundaryCollision" type="StaticBody2D" parent="."]
 visible = false
-metadata/_edit_lock_ = true
+position = Vector2(-130, 65)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoundaryCollision"]
 position = Vector2(178.38623, -28.066582)
@@ -202,36 +240,18 @@ polygon = PackedVector2Array(-34.38623, 156.06659, -34.38623, 188.06659, 13.6137
 
 [node name="CollectibleItem" parent="." instance=ExtResource("6_wvg2w")]
 z_index = 3
-position = Vector2(233, 26)
+position = Vector2(103, 91)
 item_name = "knife"
 
-[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
-
-[node name="AmbientPlayer" type="AudioStreamPlayer" parent="."]
-
-[node name="DreamEffect" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="DreamEffect"]
-material = SubResource("ShaderMaterial_hbd3v")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -299.0
-offset_top = -217.0
-offset_right = -299.0
-offset_bottom = -217.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-
 [node name="Interactables" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(-130, 65)
 script = ExtResource("8_ijtrw")
 
 [node name="Desktop" type="Node" parent="Interactables"]
 
 [node name="Area2D" type="Area2D" parent="Interactables/Desktop"]
-position = Vector2(233, 26)
+position = Vector2(103, 91)
 collision_layer = 16
 script = ExtResource("8_670e5")
 dialogue_resource = ExtResource("9_670e5")
@@ -245,7 +265,7 @@ shape = SubResource("RectangleShape2D_l4ilk")
 [node name="Lamp" type="Node" parent="Interactables"]
 
 [node name="Area2D" type="Area2D" parent="Interactables/Lamp"]
-position = Vector2(233, 26)
+position = Vector2(103, 91)
 collision_layer = 16
 script = ExtResource("8_670e5")
 dialogue_resource = ExtResource("9_670e5")
@@ -255,6 +275,118 @@ dialogue_start = "Lamp"
 z_index = 99
 position = Vector2(46, -7.75)
 shape = SubResource("RectangleShape2D_ijtrw")
+
+[node name="Sofa" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/Sofa"]
+position = Vector2(181, 171)
+collision_layer = 16
+script = SubResource("GDScript_g88aa")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "Sofa"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Sofa/Area2D"]
+z_index = 99
+position = Vector2(7.999237, -7.6293945e-06)
+shape = SubResource("RectangleShape2D_cbcou")
+
+[node name="Sofa2" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/Sofa2"]
+position = Vector2(146.00003, 214)
+collision_layer = 16
+script = SubResource("GDScript_g88aa")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "Sofa"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Sofa2/Area2D"]
+z_index = 99
+position = Vector2(7.999237, -1.1192169)
+shape = SubResource("RectangleShape2D_cbcou")
+
+[node name="SofaTable" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/SofaTable"]
+position = Vector2(154, 184)
+collision_layer = 16
+script = SubResource("GDScript_4tl26")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "SofaTable"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/SofaTable/Area2D"]
+z_index = 99
+position = Vector2(-3.0517578e-05, 1.4346237)
+shape = SubResource("RectangleShape2D_g5usj")
+
+[node name="DesktopChair" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/DesktopChair"]
+position = Vector2(72, 114)
+collision_layer = 16
+script = SubResource("GDScript_l4ilk")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "DesktopChair"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/DesktopChair/Area2D"]
+z_index = 99
+position = Vector2(-1.5258789e-05, 2.6249847)
+shape = SubResource("RectangleShape2D_g88aa")
+
+[node name="LightSwitch" parent="Interactables" instance=ExtResource("5_l4ilk")]
+
+[node name="Bed" type="Node" parent="Interactables"]
+
+[node name="Area2D" type="Area2D" parent="Interactables/Bed"]
+position = Vector2(-130, 65)
+collision_layer = 16
+script = ExtResource("8_670e5")
+dialogue_resource = ExtResource("9_670e5")
+dialogue_start = "Bed"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactables/Bed/Area2D"]
+z_index = 2
+polygon = PackedVector2Array(288.99637, 40.0263, 285.99637, 40.026024, 285.9937, 69.026024, 333.9937, 69.030396, 333.9948, 57.03039, 288.9949, 56.0263)
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AmbientPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="DreamEffect" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="DreamEffect"]
+material = SubResource("ShaderMaterial_hbd3v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -429.0
+offset_top = -152.0
+offset_right = -429.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="GlitchLayer" type="CanvasLayer" parent="."]
+visible = false
+scale = Vector2(7.2, 7.2)
+transform = Transform2D(7.2, 0, 0, 7.2, 0, 0)
+
+[node name="GlitchOverlay" type="ColorRect" parent="GlitchLayer"]
+z_index = 99
+material = SubResource("ShaderMaterial_4tl26")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -33.194443
+offset_top = -10.277779
+offset_right = -33.194458
+offset_bottom = -10.277771
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.972549)
+metadata/_edit_use_anchors_ = true
 
 [editable path="Doors/Door_W"]
 [editable path="Doors/Door_Hallway"]

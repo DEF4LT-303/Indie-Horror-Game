@@ -3,6 +3,7 @@ extends Node
 ## Manages all Global states
 
 signal state_changed(room_name)
+signal item_collected(item_name)
 signal current_room_changed(room_name)
 
 # ------------------------------------
@@ -49,17 +50,19 @@ var rooms := {
 		"dark": true,
 		"blackout": false,
 		"emergency": false,
+		"dream": true,
 		"visited": false,
-		"cutscene1": false,
+		"intro_cutscene": false,
 		"bgm_override": "res://assets/audio/BGM/bedroom_nightmare.mp3",
 		"ambient_override": "res://assets/audio/BGM/indoor-rain-bg.mp3",
 	},
 	"LevelBathroom": {
-		"dark": true,
-		"blackout": false,
+		"dark": false,
+		"blackout": true,
 		"emergency": false,
+		"dream": true,
 		"visited": false,
-		"bgm_override": "res://assets/audio/BGM/bedroom_nightmare.mp3",
+		"bgm_override": null,
 		"ambient_override": "res://assets/audio/BGM/indoor-rain-bg.mp3",
 	}
 }
@@ -71,6 +74,10 @@ var items := {
 	"knife": {
 		"collected": false,
 		"visible": false
+	},
+	"letter": {
+		"collected": false,
+		"visible": true
 	}
 }
 
@@ -110,6 +117,7 @@ func mark_item_collected(item_name: String) -> void:
 	if items.has(item_name):
 		items[item_name]["collected"] = true
 		items[item_name]["visible"] = false
+		emit_signal("item_collected", item_name)
 
 
 func is_item_collected(item_name: String) -> bool:
@@ -164,3 +172,10 @@ func set_current_room(room_name: String) -> void:
 		return
 	current_room = room_name
 	current_room_changed.emit(room_name)
+	
+func get_current_room_node() -> Node:
+	if current_room == "" or current_room == null:
+		return null
+
+	var root = get_tree().get_current_scene()
+	return root.get_node_or_null(current_room)

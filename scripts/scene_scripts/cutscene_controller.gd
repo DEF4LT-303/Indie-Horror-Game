@@ -1,7 +1,7 @@
 extends Node
 
 ## A reusable cutscene system that can be triggered from scripts or dialogue mutations
-## Supports various actions: wait, move player, camera pan, play animation, etc.
+## Supports various actions: wait, move Player, camera pan, play animation, etc.
 ##
 ## USAGE EXAMPLES:
 ##
@@ -25,11 +25,11 @@ extends Node
 ##
 ## AVAILABLE ACTION TYPES:
 ## - "wait": Wait for duration (requires "duration" in seconds)
-## - "move_player": Move player to position (requires "position" Vector2, optional "duration", "relative")
+## - "move_player": Move Player to position (requires "position" Vector2, optional "duration", "relative")
 ## - "camera_pan": Pan camera to position (requires "position" Vector2, optional "duration", "relative")
 ## - "camera_zoom": Zoom camera (requires "zoom" Vector2, optional "duration")
 ## - "camera_shake": Shake camera (requires "intensity" float, "duration" float)
-## - "play_animation": Play animation on player/node (requires "animation" string, optional "node", "wait")
+## - "play_animation": Play animation on Player/node (requires "animation" string, optional "node", "wait")
 ## - "play_sound": Play sound effect (requires "sound" path string, optional "volume")
 ## - "set_event": Set global event flag (requires "event" string, "value" bool)
 ## - "custom": Execute custom callback (requires "callback" Callable or string, optional "args")
@@ -42,29 +42,29 @@ var is_playing: bool = false
 var current_cutscene_name: String = ""
 
 # Cache references
-var player: CharacterBody2D = null
+var Player: CharacterBody2D = null
 var camera: Camera2D = null
 
 func _ready() -> void:
-	# Find player when ready
+	# Find Player when ready
 	call_deferred("_find_player")
 
 func _find_player() -> void:
 	var attempts = 0
-	while not player and attempts < 120:  # try for 120 frames (~2 seconds)
-		var nodes = get_tree().get_nodes_in_group("player")
+	while not Player and attempts < 120:  # try for 120 frames (~2 seconds)
+		var nodes = get_tree().get_nodes_in_group("Player")
 		if nodes.size() > 0:
-			player = nodes[0]
+			Player = nodes[0]
 			break
 		attempts += 1
 		await get_tree().process_frame
 
-	if not player:
+	if not Player:
 		#push_error("Player not found for cutscene!")
 		return
 
 	# Find camera if needed
-	camera = player.get_node_or_null("Camera2D")
+	camera = Player.get_node_or_null("Camera2D")
 	if not camera:
 		var cameras = get_tree().get_nodes_in_group("camera")
 		if cameras.size() > 0:
@@ -91,17 +91,17 @@ func play_cutscene(cutscene_name: String, custom_cutscene: Array = []) -> void:
 	current_cutscene_name = cutscene_name
 	cutscene_started.emit(cutscene_name)
 	
-	# Disable player movement
+	# Disable Player movement
 	GlobalState.player_can_move = false
 	
-	# Ensure we have player reference
-	if not player:
+	# Ensure we have Player reference
+	if not Player:
 		_find_player()
 	
 	# Execute cutscene actions
 	await _execute_cutscene(cutscene_data)
 	
-	# Re-enable player movement
+	# Re-enable Player movement
 	GlobalState.player_can_move = true
 	
 	is_playing = false
@@ -133,6 +133,8 @@ func _execute_cutscene(actions: Array) -> void:
 				_action_play_sound(action)
 			"set_event":
 				_action_set_event(action)
+			"play_dialogue":
+				await _action_play_dialogue(action)
 			"custom":
 				await _action_custom(action)
 			_:
@@ -145,9 +147,9 @@ func _action_wait(action: Dictionary) -> void:
 	var duration = action.get("duration", 1.0)
 	await get_tree().create_timer(duration).timeout
 
-## Action: Move player to a position
+## Action: Move Player to a position
 func _action_move_player(action: Dictionary) -> void:
-	if not player:
+	if not Player:
 		push_warning("Player not found for move_player action")
 		return
 	
@@ -155,11 +157,11 @@ func _action_move_player(action: Dictionary) -> void:
 	var duration = action.get("duration", 1.0)
 	var relative = action.get("relative", false)
 	
-	var start_pos = player.global_position
+	var start_pos = Player.global_position
 	var end_pos = target_pos if not relative else start_pos + target_pos
 	
 	var tween = create_tween()
-	tween.tween_property(player, "global_position", end_pos, duration)
+	tween.tween_property(Player, "global_position", end_pos, duration)
 	await tween.finished
 
 ## Action: Pan camera to a position
@@ -216,14 +218,14 @@ func _action_camera_shake(action: Dictionary) -> void:
 	
 	camera.global_position = original_pos
 
-## Action: Play animation on player or specified node
+## Action: Play animation on Player or specified node
 func _action_play_animation(action: Dictionary) -> void:
 	var target_node = action.get("node", null)
 	var anim_name = action.get("animation", "")
 	var wait_for_completion = action.get("wait", true)
 	
 	if not target_node:
-		target_node = player
+		target_node = Player
 	
 	if not is_instance_valid(target_node):
 		push_warning("Invalid node for play_animation action")
@@ -273,6 +275,18 @@ func _action_set_event(action: Dictionary) -> void:
 	
 	GlobalState.events[event_name] = value
 
+## Action: Play dialogue
+func _action_play_dialogue(action: Dictionary) -> void:
+	var dialogue_res = action.get("dialogue", null)
+	var start_node = action.get("start", "start")
+
+	if not dialogue_res:
+		push_warning("No dialogue provided for play_dialogue action")
+		return
+
+	DialogueManager.show_dialogue_balloon(dialogue_res, start_node)
+	await DialogueManager.dialogue_ended
+
 ## Action: Custom callback function
 func _action_custom(action: Dictionary) -> void:
 	var callback = action.get("callback", null)
@@ -289,12 +303,12 @@ func _action_custom(action: Dictionary) -> void:
 		else:
 			await callback.callv(args) if callback.is_valid() else null
 
-	# If it's a String, call it on the player
+	# If it's a String, call it on the Player
 	elif callback is String:
-		if player and player.has_method(callback):
-			await player.callv(callback, args)
+		if Player and Player.has_method(callback):
+			await Player.callv(callback, args)
 		else:
-			push_warning("Callback string '" + callback + "' not found on player")
+			push_warning("Callback string '" + callback + "' not found on Player")
 
 
 ## Stop the current cutscene

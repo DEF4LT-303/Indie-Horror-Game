@@ -8,7 +8,7 @@ extends Node2D
 var monitoring_pickup := false
 
 func _ready():
-	if GlobalState.is_item_visible(item_name) == false:
+	if not GlobalState.is_item_visible(item_name):
 		$".".visible = false
 		collision.disabled = true
 		
@@ -24,7 +24,6 @@ func _ready():
 func _process(_delta):
 	if monitoring_pickup:
 		if GlobalState.is_item_collected(item_name):
-			# This triggers immediately when player chooses “Pick up”
 			visible = false
 			collision.disabled = true
 

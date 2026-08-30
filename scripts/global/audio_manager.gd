@@ -34,24 +34,42 @@ func play_room_audio(room_name: String):
 	_handle_audio_change(ambient_player, amb_to_play, -15)
 
 
-func _handle_audio_change(player: AudioStreamPlayer, new_stream: AudioStream, target_volume_db: float):
+func _handle_audio_change(Player: AudioStreamPlayer, new_stream: AudioStream, target_volume_db: float):
 	if new_stream == null:
-		_fade_out_and_stop(player)
+		_fade_out_and_stop(Player)
 	else:
-		_crossfade(player, new_stream, target_volume_db)
+		_crossfade(Player, new_stream, target_volume_db)
 
-func _fade_out_and_stop(player: AudioStreamPlayer):
-	if player.stream == null:
+func _fade_out_and_stop(Player: AudioStreamPlayer):
+	if Player.stream == null:
 		return
 
 	var t = create_tween()
-	t.tween_property(player, "volume_db", -40, 0.4)
+	t.tween_property(Player, "volume_db", -40, 0.4)
 	t.tween_callback(func():
-		player.stop()
-		player.stream = null
+		Player.stop()
+		Player.stream = null
 	)
 
-
+func play_bgm(path: String, volume_db: float = -20) -> void:
+	var stream: AudioStream = load(path)
+	if stream == null:
+		push_warning("Invalid BGM path: " + path)
+		return
+		
+	_crossfade(bgm_player, stream, volume_db)
+	
+func stop_bgm(fade_time: float = 0.4) -> void:
+	if bgm_player.stream == null or not bgm_player.playing:
+		return
+	
+	var t = create_tween()
+	t.tween_property(bgm_player, "volume_db", -40, fade_time)
+	t.tween_callback(func():
+		bgm_player.stop()
+		bgm_player.stream = null
+	)
+	
 func _on_room_changed(changed_room_name: String):
 	if changed_room_name == current_room:
 		play_room_audio(current_room)
@@ -60,17 +78,17 @@ func _on_room_changed(changed_room_name: String):
 # CROSSFADE UTILITY
 # ----------------------
 
-func _crossfade(player: AudioStreamPlayer, new_stream: AudioStream, target_volume_db: float = 0):
-	if new_stream == null or player.stream == new_stream:
+func _crossfade(Player: AudioStreamPlayer, new_stream: AudioStream, target_volume_db: float = 0):
+	if new_stream == null or Player.stream == new_stream:
 		return
 
 	var t = create_tween()
-	t.tween_property(player, "volume_db", -40, 0.4)
+	t.tween_property(Player, "volume_db", -40, 0.4)
 	t.tween_callback(func():
-		player.stream = new_stream
-		player.play()
+		Player.stream = new_stream
+		Player.play()
 	)
-	t.tween_property(player, "volume_db", target_volume_db, 0.4)
+	t.tween_property(Player, "volume_db", target_volume_db, 0.4)
 	
 	# ----------------------
 # SFX PLAYER POOL
@@ -85,37 +103,37 @@ func play_sfx(path: String, volume_db: float = 0.0) -> AudioStreamPlayer:
 		push_warning("Invalid SFX path: " + path)
 		return null
 
-	var player := _get_sfx_player()
-	player.stream = stream
-	player.volume_db = volume_db
-	player.play()
+	var Player := _get_sfx_player()
+	Player.stream = stream
+	Player.volume_db = volume_db
+	Player.play()
 
-	# Use a lambda to recycle the player when finished
-	player.finished.connect(func(p=player):
+	# Use a lambda to recycle the Player when finished
+	Player.finished.connect(func(p=Player):
 		_recycle_sfx_player(p)
 	)
 
-	return player
+	return Player
 
 
 func _get_sfx_player() -> AudioStreamPlayer:
-	# Reuse available player from pool
+	# Reuse available Player from pool
 	for p in sfx_pool:
 		if not p.playing:
 			return p
 
-	# Create new player if pool is not full
+	# Create new Player if pool is not full
 	if sfx_pool.size() < MAX_SFX:
 		var p = AudioStreamPlayer.new()
 		add_child(p)
 		sfx_pool.append(p)
 		return p
 
-	# Fallback: reuse first player in pool if max reached
+	# Fallback: reuse first Player in pool if max reached
 	return sfx_pool[0]
 
 
-func _recycle_sfx_player(player: AudioStreamPlayer) -> void:
-	if player.playing:
-		player.stop()
-	player.stream = null
+func _recycle_sfx_player(Player: AudioStreamPlayer) -> void:
+	if Player.playing:
+		Player.stop()
+	Player.stream = null

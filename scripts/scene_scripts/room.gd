@@ -1,10 +1,10 @@
-extends Node
+extends Node2D
 class_name Room
 
 @export var room_id: int = 0
 
 @onready var player_packed_scene = preload("res://scenes/player.tscn")
-var player: Player = null
+@onready var Player = NavigationManager.Player
 
 # --------------------------
 # LIGHTING PRESETS (shared across all rooms)
@@ -16,9 +16,11 @@ const COLOR_BLACKOUT    := Color(0, 0, 0, 1)
 
 @onready var modulate_node: CanvasModulate = $CanvasModulate
 @onready var dream_effect: CanvasLayer = $DreamEffect if has_node("DreamEffect") else null
+@onready var glitch_effect: CanvasLayer = $GlitchLayer if has_node("GlitchLayer") else null
 
 var flicker_tween: Tween = null
 
+	
 func _ready() -> void:
 	GlobalState.set_current_room(name)
 
@@ -43,24 +45,24 @@ func _ready() -> void:
 # PLAYER LOGIC
 # --------------------------
 func spawn_player():
-	if NavigationManager.player:
-		player = NavigationManager.player
-		if player.get_parent() != self:
-			add_child(player)
+	if NavigationManager.Player:
+		Player = NavigationManager.Player
+		if Player.get_parent() != self:
+			add_child(Player)
 	else:
-		player = player_packed_scene.instantiate()
-		NavigationManager.player = player
-		add_child(player)
+		Player = player_packed_scene.instantiate()
+		NavigationManager.Player = Player
+		add_child(Player)
 
 func spawn_player_at_tag(tag: String):
 	var door = find_door_by_name("Door_" + tag)
 	if door:
-		player.global_position = door.spawn.global_position
+		Player.global_position = door.spawn.global_position
 	else:
 		var marker = get_node_or_null("SpawnPoints/" + tag)
 		if marker:
 			spawn_player()
-			player.global_position = marker.global_position
+			Player.global_position = marker.global_position
 		else:
 			push_warning("Spawn tag not found as door or marker: " + tag)
 
@@ -68,9 +70,9 @@ func spawn_player_at_marker(marker_name: String, direction: String = ""):
 	var marker = get_node_or_null("SpawnPoints/" + marker_name)
 	if marker:
 		spawn_player()
-		player.global_position = marker.global_position
+		Player.global_position = marker.global_position
 		if direction != "":
-			player.set_direction(direction)
+			Player.set_direction(direction)
 	else:
 		push_warning("Spawn marker not found: " + marker_name)
 
@@ -99,7 +101,7 @@ func get_door_data(door_array: Array, door_name: String):
 			return d
 	return null
 
-func apply_door_data(door_node: Door, data):
+func apply_door_data(door_node, data):
 	door_node.destination_level_tag = data.Destination_Level_Tag
 	door_node.destination_door_tag = data.Destination_Door_Tag
 	door_node.spawn_direction = data.Spawn_Direction
@@ -117,11 +119,14 @@ func apply_state_lighting() -> void:
 
 	if dream_effect:
 		dream_effect.visible = GlobalState.get_room_state(room_name, "dream")
+		
+	if glitch_effect:
+		glitch_effect.visible = GlobalState.get_room_state(room_name, "glitch")
 
 	if GlobalState.events.get("emergency_mode", false) \
 			or GlobalState.get_room_state(room_name, "emergency"):
 		fade_to_emergency(0, true)
-		start_emergency_flicker()
+		#start_emergency_flicker()
 
 	elif GlobalState.events.get("blackout", false) \
 			or GlobalState.get_room_state(room_name, "blackout"):
@@ -131,7 +136,7 @@ func apply_state_lighting() -> void:
 		fade_to_dark_room(0, true)
 
 	else:
-		fade_to_normal()
+		fade_to_normal(0, true)
 		stop_flicker()
 
 # --------------------------

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cppb1vef858ku" path="res://art/room and furnitures/messy_room_door_tiles.png" id="1_rwgxs"]
 [ext_resource type="Texture2D" uid="uid://c4yoyk0cmjgfp" path="res://art/room and furnitures/messy furniture set updated v2.png" id="2_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://gpi31o2j2anw" path="res://scripts/player.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://gpi31o2j2anw" path="res://scripts/Player.tscn" id="3_4wyf3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
 texture = ExtResource("2_4wyf3")
@@ -1915,7 +1915,7 @@ tile_map_data = PackedByteArray("AAD7//r/AAASABEAABA=")
 tile_set = SubResource("TileSet_4mrxx")
 script = SubResource("GDScript_4wyf3")
 
-[node name="player" parent="Floor" instance=ExtResource("3_4wyf3")]
+[node name="Player" parent="Floor" instance=ExtResource("3_4wyf3")]
 z_index = 1
 z_as_relative = false
 position = Vector2(-16, -41)

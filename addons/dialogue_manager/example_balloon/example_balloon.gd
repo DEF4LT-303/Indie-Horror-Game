@@ -17,13 +17,13 @@ class_name DialogueManagerExampleBalloon extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
-## A sound player for voice lines (if they exist).
+## A sound Player for voice lines (if they exist).
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 
 ## Temporary game states
 var temporary_game_states: Array = []
 
-## See if we are waiting for the player
+## See if we are waiting for the Player
 var is_waiting_for_input: bool = false
 
 ## See if we are running a long mutation and should hide the balloon
@@ -64,7 +64,7 @@ var mutation_cooldown: Timer = Timer.new()
 ## The menu of responses
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
-## Indicator to show that player can progress dialogue.
+## Indicator to show that Player can progress dialogue.
 @onready var progress: Polygon2D = %Progress
 
 

@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8ift1lkw0enp"]
+[gd_scene load_steps=11 format=3 uid="uid://b8ift1lkw0enp"]
 
 [ext_resource type="Script" uid="uid://do7peuvx6mw42" path="res://scripts/elements/collectible_item.gd" id="1_2t1da"]
-[ext_resource type="Texture2D" uid="uid://dm2wxao4hbvyi" path="res://art/particles/shiny.png" id="2_1pelc"]
+[ext_resource type="Texture2D" uid="uid://dm2wxao4hbvyi" path="res://assets/particles/shiny.png" id="2_1pelc"]
+[ext_resource type="Shader" uid="uid://c5muqfm7q06r2" path="res://scripts/scene_scripts/shaders/collectible_item.gdshader" id="2_rek4e"]
 [ext_resource type="Script" uid="uid://dxqpy80tl5acn" path="res://scripts/dialogues/actionable.gd" id="2_vdfb2"]
 [ext_resource type="Resource" uid="uid://cyurc6wgi4rt0" path="res://scripts/dialogues/item.dialogue" id="4_1pelc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hq2xc"]
+shader = ExtResource("2_rek4e")
+shader_parameter/glow_color = Vector4(1, 1, 0.5, 1)
+shader_parameter/glow_strength = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rek4e"]
 atlas = ExtResource("2_1pelc")
@@ -28,18 +34,19 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hqcm"]
-radius = 14.0
+radius = 6.0827627
 
 [node name="CollectibleItem" type="Node2D"]
 script = ExtResource("1_2t1da")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_hq2xc")
 sprite_frames = SubResource("SpriteFrames_hq2xc")
 animation = &"collectible_item"
 frame_progress = 0.36388752
 
 [node name="Actionable" type="Area2D" parent="."]
-collision_layer = 16
+collision_layer = 48
 script = ExtResource("2_vdfb2")
 dialogue_resource = ExtResource("4_1pelc")
 dialogue_start = "knife"

@@ -8,3 +8,17 @@ There's a {{item_name}} on the table. Pick it up?
 - Leave
 set GlobalState.player_can_move = true
 => END
+
+~ letter
+set GlobalState.player_can_move = false
+There's a {{item_name}} on the ground. Pick it up?
+- Pick up
+	set GlobalState.mark_item_collected(item_name)
+	
+	[speed=0.4]You will never wake... up...
+	You will ne░▒▓ver wake up!
+	YOU WILL [color=#ff0000][shake rate=18 level=4]NEV█ER[/shake][/color] W△KE UP!!!
+
+- Leave
+set GlobalState.player_can_move = true
+=> END

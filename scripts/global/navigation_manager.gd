@@ -8,7 +8,7 @@ var spawn_door_tag
 
 var custom_spawn_point: String = ""
 
-var player : Player = null
+var Player : Player = null
 
 var level_dictionary
 var room_array : Array

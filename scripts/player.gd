@@ -2,12 +2,21 @@ extends CharacterBody2D
 
 class_name Player
 
+@onready var actionable_finder: Area2D = $Direction/ActionableFinder
+@onready var actionable_finder_ground: Area2D = $Direction/ActionableFinderGround
+@onready var light: PointLight2D = $PointLight2D
+
 @export var speed = 100
 var curr_dir = "down"
 var current_room: String = ""
 
-@onready var actionable_finder: Area2D = $Direction/ActionableFinder
-@onready var light: PointLight2D = $PointLight2D
+var action_area_offsets := {
+	"up": Vector2(0, -8),
+	"down": Vector2(0, 16),
+	"left": Vector2(-8, 4),
+	"right": Vector2(8, 4)
+}
+
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("front_idle")
@@ -34,13 +43,19 @@ func _on_current_room_changed(room_name: String) -> void:
 	_update_light()
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("interact"):
-		var actionables = actionable_finder.get_overlapping_areas()
-		# DEBUG
-		print("Actionable item: ", actionable_finder.get_overlapping_areas())
-		if actionables.size() > 0:
-			actionables[0].action()
-			return
+	if not Input.is_action_just_pressed("interact"):
+		return
+
+	# Try directional 
+	var actionables = actionable_finder.get_overlapping_areas()
+	if actionables.size() > 0:
+		actionables[0].action()
+		return
+
+	# Fallback to ground items
+	var ground_actionables = actionable_finder_ground.get_overlapping_areas()
+	if ground_actionables.size() > 0:
+		ground_actionables[0].action()
 
 func _on_spawn(position: Vector2, direction: String) -> void:
 	global_position = position
@@ -78,6 +93,8 @@ func _physics_process(_delta: float) -> void:
 			return
 	else:
 		play_anim(false)
+	
+	actionable_finder.position = action_area_offsets.get(curr_dir, Vector2.ZERO)
 
 func update_direction(input_vector: Vector2) -> void:
 	if abs(input_vector.x) > abs(input_vector.y):
